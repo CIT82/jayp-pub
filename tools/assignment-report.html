@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CIT-82 Assignment Status</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.25rem;
+            font-weight: bold;
+        }
+
+        #api-key {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.5rem;
+            font-family: monospace;
+        }
+
+        button {
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+        }
+
+        #output {
+            width: 100%;
+            height: 400px;
+            box-sizing: border-box;
+            padding: 0.75rem;
+            font-family: monospace;
+            white-space: pre;
+            resize: vertical;
+        }
+
+        #rate-limit {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.5rem;
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>CIT-82 Assignment Status</h1>
+
+<label for="api-key">
+    GitHub API Key
+</label>
+
+<input
+    type="password"
+    id="api-key"
+    placeholder="Optional — leave blank for anonymous access"
+>
+
+<button id="run-query">
+    Run Query
+</button>
+
+<label for="output">
+    Assignment Status
+</label>
+
+<textarea
+    id="output"
+    readonly
+></textarea>
+
+<label for="rate-limit">
+    GitHub API Rate Limit (hourly)
+</label>
+
+<input
+    type="text"
+    id="rate-limit"
+    readonly
+    value="Not queried yet"
+>
+
+<script>
+const ORG = "CIT82";
+
+const assignments = [
+    [
+        "Week 02 Assignment",
+        "screenshots",
+        "w2-attend."
+    ]
+];
+
+const output = document.getElementById("output");
+const rateLimit = document.getElementById("rate-limit");
+const apiKey = document.getElementById("api-key");
+const runButton = document.getElementById("run-query");
+
+
+function getHeaders() {
+    const headers = {
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2026-03-10"
+    };
+
+    const token = apiKey.value.trim();
+
+    if (token !== "") {
+        headers["Authorization"] = `Bearer ${token}`;
+    }
+
+    return headers;
+}
+
+
+async function githubFetch(url) {
+    const response = await fetch(url, {
+        headers: getHeaders()
+    });
+
+    const limit = response.headers.get(
+        "X-RateLimit-Limit"
+    );
+
+    const remaining = response.headers.get(
+        "X-RateLimit-Remaining"
+    );
+
+    rateLimit.value =
+        `Limit: ${limit ?? "unknown"} | ` +
+        `Remaining: ${remaining ?? "unknown"}`;
+
+    return response;
+}
+
+
+async function getPublicRepos() {
+    const repos = [];
+    let page = 1;
+
+    while (true) {
+        const url = new URL(
+            `https://api.github.com/orgs/${ORG}/repos`
+        );
+
+        url.searchParams.set("type", "public");
+        url.searchParams.set("sort", "full_name");
+        url.searchParams.set("direction", "asc");
+        url.searchParams.set("per_page", "100");
+        url.searchParams.set("page", page);
+
+        const response = await githubFetch(url);
+
+        if (!response.ok) {
+            throw new Error(
+                `Unable to retrieve repositories: ` +
+                `HTTP ${response.status}`
+            );
+        }
+
+        const batch = await response.json();
+
+        if (batch.length === 0) {
+            break;
+        }
+
+        repos.push(...batch);
+
+        if (batch.length < 100) {
+            break;
+        }
+
+        page++;
+    }
+
+    return repos;
+}
+
+
+async function getRepositoryTree(repo) {
+    const repoName = repo.name;
+    const defaultBranch = encodeURIComponent(repo.default_branch);
+
+    const url =
+        `https://api.github.com/repos/` +
+        `${ORG}/${repoName}/git/trees/${defaultBranch}` +
+        `?recursive=1`;
+
+    const response = await githubFetch(url);
+
+    if (!response.ok) {
+        throw new Error(
+            `${repoName}: unable to retrieve repository tree: ` +
+            `HTTP ${response.status}`
+        );
+    }
+
+    const data = await response.json();
+
+    if (data.truncated) {
+        throw new Error(
+            `${repoName}: recursive repository tree was truncated`
+        );
+    }
+
+    return data.tree;
+}
+
+
+async function generateReport() {
+    output.value = "Querying GitHub...\n";
+    rateLimit.value = "Query in progress...";
+    runButton.disabled = true;
+
+    try {
+        const repos = await getPublicRepos();
+
+        const studentRepos = repos.filter(
+            repo => repo.name.endsWith("-pub")
+        );
+
+        let report = "";
+
+        for (const repo of studentRepos) {
+            report += `${repo.name}\n`;
+
+            /*
+             * Fetch the complete recursive repository tree once.
+             * All assignment checks for this repository are then
+             * performed locally without additional API requests.
+             */
+            const tree = await getRepositoryTree(repo);
+
+            for (
+                let i = 0;
+                i < assignments.length;
+                i++
+            ) {
+                const [
+                    assignmentName,
+                    path,
+                    sentinelPrefix
+                ] = assignments[i];
+
+                const normalizedPath =
+                    path.replace(/^\/+|\/+$/g, "");
+
+                const targetPrefix =
+                    normalizedPath === ""
+                        ? sentinelPrefix
+                        : `${normalizedPath}/${sentinelPrefix}`;
+
+                const done = tree.some(
+                    item =>
+                        item.type === "blob" &&
+                        item.path.startsWith(targetPrefix)
+                );
+
+                const status =
+                    done ? "done" : "pending";
+
+                const isLast =
+                    i === assignments.length - 1;
+
+                const branch =
+                    isLast ? "└──" : "├──";
+
+                report +=
+                    `${branch} ` +
+                    `${assignmentName}: ${status}\n`;
+            }
+
+            report += "\n";
+
+            /*
+             * Update the textarea progressively.
+             */
+            output.value = report;
+        }
+
+        if (studentRepos.length === 0) {
+            output.value =
+                "No repositories ending in -pub found.";
+        }
+    }
+    catch (error) {
+        output.value +=
+            `\nERROR: ${error.message}\n`;
+    }
+    finally {
+        runButton.disabled = false;
+    }
+}
+
+
+runButton.addEventListener(
+    "click",
+    generateReport
+);
+</script>
+
+</body>
+</html>
