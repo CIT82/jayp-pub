@@ -11,4 +11,8 @@ This is the public repository for Jay's coursework for CIT-82 Spring 2026.
 
 **Progress is progress, even if it's just moving from the couch to the fridge. You can always check it off as a "strategic repositioning".**
 
-### [Additional Tools](https://cit82.github.io/jayp-pub/tools/)
+## Week 02
+
+[Project 0 Kickoff](https://cit82.github.io/jayp-pub/w2/)
+
+## [Additional Tools](https://cit82.github.io/jayp-pub/tools/)
