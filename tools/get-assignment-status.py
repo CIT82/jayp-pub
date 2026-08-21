@@ -15,9 +15,14 @@ URL = f"https://api.github.com/orgs/{ORG}/repos"
 
 assignments = [
 	(
-		"Week 02 Assignment",
+		"Week 02 Attendance",
 		"screenshots",
 		"w2-attend.",
+	),
+	(
+		"Week 02 Project",
+		"w2",
+		"index.html",
 	),
 ]
 
