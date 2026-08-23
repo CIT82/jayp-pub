@@ -1,6 +1,9 @@
 from urllib.parse import quote
 
 import requests
+import json
+from pathlib import Path
+from urllib.parse import quote
 
 from config import GITHUB_PERSONAL_ACCESS_TOKEN
 
@@ -13,18 +16,13 @@ headers = {
 ORG = "CIT82"
 URL = f"https://api.github.com/orgs/{ORG}/repos"
 
-assignments = [
-	(
-		"Week 02 Attendance",
-		"screenshots",
-		"w2-attend.",
-	),
-	(
-		"Week 02 Project",
-		"w2",
-		"index.html",
-	),
-]
+SCRIPT_DIR = Path(__file__).resolve().parent
+
+with (SCRIPT_DIR / "assignments.json").open(
+	"r",
+	encoding="utf-8",
+) as file:
+	assignments = json.load(file)
 
 repos = []
 page = 1

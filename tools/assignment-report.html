@@ -92,18 +92,28 @@
 <script>
 const ORG = "CIT82";
 
-const assignments = [
-    [
-        "Week 02 Attendance",
-        "w2",
-        "index.html"
-    ],
-    [
-        "Week 02 Project",
-        "screenshots",
-        "w2-attend."
-    ]
-];
+let assignments = [];
+
+async function loadAssignments() {
+    let response;
+
+    try {
+        response = await fetch("assignments.json");
+    }
+    catch (error) {
+        throw new Error(
+            `Unable to fetch assignments.json: ${error.message}`
+        );
+    }
+
+    if (!response.ok) {
+        throw new Error(
+            `Unable to load assignments.json: HTTP ${response.status}`
+        );
+    }
+
+    assignments = await response.json();
+}
 
 const output = document.getElementById("output");
 const rateLimit = document.getElementById("rate-limit");
@@ -227,6 +237,8 @@ async function generateReport() {
     runButton.disabled = true;
 
     try {
+		await loadAssignments();
+
         const repos = await getPublicRepos();
 
         const studentRepos = repos.filter(
