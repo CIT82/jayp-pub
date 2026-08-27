@@ -12,13 +12,21 @@
 			80%  { color: purple; }
 			100% { color: red; }
 		}
-		
+		@keyframes spin {
+			to {
+				transform: rotate(360deg);
+			}
+		}
+
 		.cycle {
-			animation: colorCycle 3s linear infinite;
+			display: inline-block;
+			animation:
+				colorCycle 3s linear infinite,
+				spin 2s linear infinite;
 		}
     </style>
 </head>
 <body>
-	<h1 class="cycle">CSS? Yes!</h1>
+	<h1><p class="cycle">CSS? Yes!</p></h1>
 </body>
 </html>
