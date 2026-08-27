@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS test</title>
+    <style>
+		@keyframes colorCycle {
+			0%   { color: red; }
+			20%  { color: yellow; }
+			40%  { color: green; }
+			60%  { color: blue; }
+			80%  { color: purple; }
+			100% { color: red; }
+		}
+		
+		.cycle {
+			animation: colorCycle 3s linear infinite;
+		}
+    </style>
+</head>
+<body>
+	<h1 class="cycle">CSS? Yes!</h1>
+</body>
+</html>
