@@ -1,6 +1,8 @@
 body {
 	background-image: url(bg-image.jpg);
 	background-color: #16062e;
+	background-size: cover;
+	background-position: center;
 	font-family: "Trebuchet MS", Arial, sans-serif;
 	color: #251438;
 	padding: 20px;
