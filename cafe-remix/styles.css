@@ -1,0 +1,103 @@
+body {
+	background-image: url(bg-image.jpg);
+	background-color: #16062e;
+	font-family: sans-serif;
+	padding: 20px;
+}
+
+h1 {
+	font-size: 40px;
+	margin-top: 0;
+	margin-bottom: 15px;
+}
+
+h2 {
+	font-size: 30px;
+}
+
+.established {
+	font-style: italic;
+}
+
+h1, h2, p {
+	text-align: center;
+	font-family: Impact, serif;
+}
+
+h1 {
+	color: #532a7d;
+}
+
+h2 {
+	color: #62359a;
+}
+
+.menu {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
+	max-width: 500px;
+	background-color: #e8e0f2;
+	color: #251438;
+}
+
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -25px;
+}
+
+hr {
+	height: 2px;
+	background-color: purple;
+	border-color: purple;
+}
+
+.bottom-line {
+	margin-top: 25px;
+}
+
+.item p {
+	display: inline-block;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-size: 18px;
+}
+
+.bday-package, .custom-item {
+	text-align: left;
+	width: 75%;
+}
+
+.price {
+	text-align: right;
+	width: 25%;
+}
+
+/* FOOTER */
+
+footer {
+	font-size: 14px;
+}
+
+address {
+	font-style: normal;
+}
+
+.address {
+	margin-bottom: 5px;
+}
+
+a {
+	color: black;
+}
+
+a:visited, a:active {
+	color: #287ec7;
+}
+
+a:hover {
+	color: green;
+}
