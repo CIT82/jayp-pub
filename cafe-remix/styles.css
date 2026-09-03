@@ -1,7 +1,8 @@
 body {
 	background-image: url(bg-image.jpg);
 	background-color: #16062e;
-	font-family: sans-serif;
+	font-family: "Trebuchet MS", Arial, sans-serif;
+	color: #251438;
 	padding: 20px;
 }
 
@@ -21,7 +22,9 @@ h2 {
 
 h1, h2, p {
 	text-align: center;
-	font-family: Impact, serif;
+    font-family: Impact, "Arial Narrow", Arial, sans-serif;
+    color: #532a7d;
+    letter-spacing: 1px;
 }
 
 h1 {
