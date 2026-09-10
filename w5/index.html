@@ -12,7 +12,7 @@
 	<!-- sticky-top to keep the navbar pinned -->
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
 		<div class="container">
-			<a href="#" class="navbar-brand">Logo</a>
+			<a href="#" class="navbar-brand"><img src="img/club-logo.jpg" alt="club logo" /></a>
 			<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav-main" aria-controls="nav-main" aria-label="Expand Navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -69,8 +69,153 @@
 
 	<hr />
 
-	<section id="events">
-		Events placeholder
+	<section id="events" class="container py-3">
+		<h1>Upcoming Events</h1>
+		<p class="lead">
+			Browse our upcoming workshops, guest speakers, networking events, and club activities.
+		</p>
+
+		<div class="accordion" id="eventsAccordion">
+
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button class="accordion-button" type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#septemberEvents"
+						aria-expanded="true"
+						aria-controls="septemberEvents">
+						September Events
+					</button>
+				</h2>
+
+				<div id="septemberEvents"
+					class="accordion-collapse collapse show"
+					data-bs-parent="#eventsAccordion">
+
+					<div class="accordion-body">
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col">Event</th>
+										<th scope="col">Description</th>
+										<th scope="col">Date</th>
+										<th scope="col">Time</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">Startup Idea Workshop</th>
+										<td>Learn how to turn a simple idea into a potential business concept.</td>
+										<td>September 23</td>
+										<td>1:00 PM</td>
+									</tr>
+									<tr>
+										<th scope="row">Club Networking Mixer</th>
+										<td>Meet other students interested in startups and entrepreneurship.</td>
+										<td>September 30</td>
+										<td>2:00 PM</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed" type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#octoberEvents"
+						aria-expanded="false"
+						aria-controls="octoberEvents">
+						October Events
+					</button>
+				</h2>
+
+				<div id="octoberEvents"
+					class="accordion-collapse collapse"
+					data-bs-parent="#eventsAccordion">
+
+					<div class="accordion-body">
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col">Event</th>
+										<th scope="col">Description</th>
+										<th scope="col">Date</th>
+										<th scope="col">Time</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">Meet a Local Entrepreneur</th>
+										<td>Hear from a business owner about launching and growing a company.</td>
+										<td>October 7</td>
+										<td>1:00 PM</td>
+									</tr>
+									<tr>
+										<th scope="row">Marketing on a Budget</th>
+										<td>Explore inexpensive ways to promote a startup or side hustle.</td>
+										<td>October 21</td>
+										<td>1:00 PM</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed" type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#novemberEvents"
+						aria-expanded="false"
+						aria-controls="novemberEvents">
+						November Events
+					</button>
+				</h2>
+
+				<div id="novemberEvents"
+					class="accordion-collapse collapse"
+					data-bs-parent="#eventsAccordion">
+
+					<div class="accordion-body">
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col">Event</th>
+										<th scope="col">Description</th>
+										<th scope="col">Date</th>
+										<th scope="col">Time</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">Networking Lunch</th>
+										<td>Meet students and local professionals over an informal lunch.</td>
+										<td>November 4</td>
+										<td>12:00 PM</td>
+									</tr>
+									<tr>
+										<th scope="row">Student Pitch Day</th>
+										<td>Practice pitching a business idea and receive feedback from the group.</td>
+										<td>November 18</td>
+										<td>1:00 PM</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
 	</section>
 
 	<hr />
