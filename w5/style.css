@@ -1,0 +1,7 @@
+html {
+	scroll-behavior: smooth;		/* auto-scrolling becomes smooth */
+}
+
+section {
+	scroll-margin-top: 70px;		/* don't allow the top section to draw below the navbar */
+}
