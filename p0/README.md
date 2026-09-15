@@ -1,4 +1,4 @@
-# External Libraries
+# External Libraries (The <head>)
 
 ## bootstrap-icons
 
@@ -27,3 +27,49 @@ This is a lightweight date-time picker in JavaScript. In the demo, it shows as a
 
 <link rel="stylesheet" href="assets/libs/flatpickr/flatpickr.min.css">
 <script src="assets/libs/flatpickr/flatpickr.min.js"></script>
+
+## Custom CSS
+
+### Links
+
+<link rel="stylesheet" href="assets/css/main.css">
+
+# Functional Blocks (Site Inventory, Top Half)
+
+## Sidebar
+
+Power Class: sidebar-wrapper
+Lines: 32-114
+Research: Defines the left sidebar menu, displayed vertically. Contains the site branding, navigation links grouped into Menu, Components, and Pages, and an administrator profile section at the bottom.
+
+## Main
+
+Power Class: main-wrapper
+Lines: 123-624
+Research: Defines the main content wrapper for everything displayed to the right of the sidebar. Contains the top navigation bar, dashboard header, main dashboard grid, and footer, effectively serving as the primary container for the page.
+
+### Sub-Blocks
+
+#### Top Navbar
+
+Power Class: navbar-custom
+Lines: 126-243
+Research: Defines the horizontal navigation bar across the top of the main content area. Provides sidebar controls, a Create quick-actions menu, search field, fullscreen control, notifications, and an administrator profile dropdown.
+
+#### Dashboard Header Banner
+
+Power Class: page-header
+Lines: 247-257
+Research: Defines the introductory header for the dashboard, displaying the page title and a short description of its purpose. Also includes a date-range picker that allows the dashboard's reporting period to be selected.
+
+#### Main Layout Grid
+
+Power Class: row g-4
+Lines: 261-599
+Research: Defines the responsive grid containing the dashboard's primary data displays and controls. Organizes summary cards, revenue and transaction information, product statistics, performance charts, and a promotional panel into responsive rows and columns.
+
+#### Footer
+
+Power Class: footer-custom
+Lines: 603-621
+Research: Defines the footer displayed at the bottom of the main content area. Contains brand and copyright information along with navigation links for Overview, Statistics, Help & Documentation, and Status.
