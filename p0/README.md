@@ -9,7 +9,6 @@ This is an optional but officially part of Boostrap collection of icons that fit
 <link rel="stylesheet" href="assets/libs/bootstrap-icons/bootstrap-icons.css">
 <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-
 ## ApexCharts
 
 This is an interactive chart rendering library in JavaScript. It appears to support a very wide variety of different chart types, and includes a generous amount of customization and animation options. I'm looking forward to discovering what this lib is capable of doing. It has a Community Edition which is what I assume is included here. https://apexcharts.com/
@@ -107,3 +106,29 @@ Research: Right-side dashboard panel for performance chart and promo banner.
 Power Class: footer-custom
 Lines: 603-621
 Research: Defines the footer displayed at the bottom of the main content area. Contains brand and copyright information along with navigation links for Overview, Statistics, Help & Documentation, and Status.
+
+## JavaScript
+
+### Bootstrap bundle
+
+Library: bootstrap.bundle.min.js
+Line: 630
+Research: The primary Bootstrap bundle, minimized, which includes Bootstrap and Popper.
+
+### ApexCharts
+
+Library: apexcharts.min.js
+Line: 631
+Research: ApexCharts library for wide variety of charts functionality, minimized.
+
+### FlatPickr
+
+Library: flatpickr.min.js
+Line: 632
+Research: FlatPickr date picker / calednar functionality, minimized.
+
+### Main JS file
+
+Name: dashboard.js
+Line: 635
+Research: Local custom dashboard controller.
