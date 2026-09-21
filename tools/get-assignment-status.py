@@ -1,5 +1,3 @@
-from urllib.parse import quote
-
 import requests
 import json
 from pathlib import Path
@@ -87,7 +85,7 @@ for repo in repos:
 
 		found = any(
 			item["type"] == "blob"
-			and item["path"].startswith(target_prefix)
+			and item["path"].casefold().startswith(target_prefix.casefold())
 			for item in tree
 		)
 
