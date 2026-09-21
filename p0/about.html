@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About - Inventory Tracker</title>
+
+  <meta name="description" content="About the Inventory Tracker web application.">
+  <meta name="author" content="Jay C. Parangalan">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.ico">
+
+  <!-- Local Third-Party Libraries -->
+  <link rel="stylesheet" href="assets/libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/libs/bootstrap-icons/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/libs/apexcharts/apexcharts.css">
+  <link rel="stylesheet" href="assets/libs/flatpickr/flatpickr.min.css">
+
+  <!-- Main Design System & Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+
+  <!-- ==========================================
+       START: Sidebar
+       ========================================== -->
+  <div class="sidebar-wrapper" id="sidebar">
+
+    <!-- Brand -->
+    <a href="index.html" class="sidebar-brand">
+      <i class="bi bi-box-seam-fill"></i>
+      <span>Inventory Tracker</span>
+    </a>
+
+    <!-- Navigation -->
+    <div class="flex-grow-1 overflow-y-auto">
+
+      <!-- Dashboard -->
+      <div class="sidebar-menu-section">
+        <div class="sidebar-menu-title">Dashboard</div>
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <a href="index.html" class="sidebar-menu-link" title="Dashboard">
+              <i class="bi bi-grid-fill"></i>
+              <span>Dashboard / Home</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Inventory -->
+      <div class="sidebar-menu-section">
+        <div class="sidebar-menu-title">Inventory</div>
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <a href="inventory.html" class="sidebar-menu-link" title="All Inventory">
+              <i class="bi bi-boxes"></i>
+              <span>All Inventory</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="scan.html" class="sidebar-menu-link" title="Scan Item">
+              <i class="bi bi-upc-scan"></i>
+              <span>Scan Item</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="add-item.html" class="sidebar-menu-link" title="Add Item">
+              <i class="bi bi-plus-square"></i>
+              <span>Add Item</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Organize -->
+      <div class="sidebar-menu-section">
+        <div class="sidebar-menu-title">Organize</div>
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <a href="categories.html" class="sidebar-menu-link" title="Categories">
+              <i class="bi bi-tags"></i>
+              <span>Categories</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="locations.html" class="sidebar-menu-link" title="Locations">
+              <i class="bi bi-geo-alt"></i>
+              <span>Locations</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="low-stock.html" class="sidebar-menu-link" title="Low Stock">
+              <i class="bi bi-exclamation-triangle"></i>
+              <span>Low Stock</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Tools -->
+      <div class="sidebar-menu-section">
+        <div class="sidebar-menu-title">Tools</div>
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <a href="activity.html" class="sidebar-menu-link" title="Activity and History">
+              <i class="bi bi-clock-history"></i>
+              <span>Activity / History</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="reports.html" class="sidebar-menu-link" title="Reports">
+              <i class="bi bi-bar-chart"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="import-export.html" class="sidebar-menu-link" title="Import and Export">
+              <i class="bi bi-arrow-down-up"></i>
+              <span>Import / Export</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- More -->
+      <div class="sidebar-menu-section">
+        <div class="sidebar-menu-title">More</div>
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <a href="about.html" class="sidebar-menu-link active" title="Help and About">
+              <i class="bi bi-info-circle"></i>
+              <span>Help / About</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="sitemap.html" class="sidebar-menu-link" title="Site Map">
+              <i class="bi bi-diagram-3"></i>
+              <span>Site Map</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  <!-- END: Sidebar -->
+
+
+  <!-- ==========================================
+       START: Main Content Area
+       ========================================== -->
+  <div class="main-wrapper">
+
+    <!-- Top Navbar -->
+    <header class="navbar-custom">
+      <div class="navbar-left">
+
+        <!-- Desktop sidebar toggle -->
+        <button class="btn-desktop-toggle d-none d-xl-flex align-items-center justify-content-center me-3"
+          id="desktop-sidebar-toggle" aria-label="Minimize Sidebar">
+          <i class="bi bi-chevron-bar-left"></i>
+        </button>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle-btn me-2" id="sidebar-toggle" aria-label="Toggle Navigation">
+          <i class="bi bi-list"></i>
+        </button>
+
+        <!-- Quick Actions -->
+        <div class="dropdown ms-2">
+          <button class="btn-quick-action dropdown-toggle" type="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-plus-lg"></i>
+            <span>Quick Actions</span>
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-quick-action">
+            <li class="dropdown-header">Inventory Shortcuts</li>
+
+            <li>
+              <a class="dropdown-item" href="scan.html">
+                <i class="bi bi-upc-scan"></i> Scan Item
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="add-item.html">
+                <i class="bi bi-plus-square"></i> Add Item
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="import-export.html">
+                <i class="bi bi-upload"></i> Import Inventory
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="navbar-search-wrapper">
+        <input type="text" class="navbar-search-input"
+          placeholder="Search inventory..." id="main-search">
+        <button class="navbar-search-btn" aria-label="Search">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+
+      <!-- Resources -->
+      <div class="navbar-actions">
+        <div class="dropdown">
+          <button class="navbar-action-btn dropdown-toggle" type="button"
+            data-bs-toggle="dropdown" aria-expanded="false"
+            aria-label="Resources">
+            <i class="bi bi-question-circle"></i>
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a class="dropdown-item" href="about.html">
+                <i class="bi bi-info-circle"></i> Help / About
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="sitemap.html">
+                <i class="bi bi-diagram-3"></i> Site Map
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!-- END: Top Navbar -->
+
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Help / About</h1>
+        <p class="page-subtitle">
+          Information about Inventory Tracker and its development.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- ==========================================
+         START: Page Content
+         ========================================== -->
+    <div class="row g-4">
+
+      <!-- About Inventory Tracker -->
+      <div class="col-lg-7">
+        <div class="card h-100">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="bi bi-box-seam me-2"></i>
+              About Inventory Tracker
+            </h2>
+          </div>
+
+          <div class="card-body">
+            <p>
+              Inventory Tracker is a browser-based inventory management
+              application designed to make it easy to add, organize, monitor,
+              and review inventory.
+            </p>
+
+            <p class="mb-0">
+              The application is being developed as a project for
+              CIT-82: Introduction to Web Development at Fresno City College.
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Developer Information -->
+      <div class="col-lg-5">
+        <div class="card h-100">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="bi bi-person-badge me-2"></i>
+              Developer Information
+            </h2>
+          </div>
+
+          <div class="card-body">
+            <p class="mb-2">
+              <strong>Created by</strong><br>
+              Jay C. Parangalan
+            </p>
+
+            <p class="mb-2">
+              <strong>Course</strong><br>
+              CIT-82: Introduction to Web Development
+            </p>
+
+            <p class="mb-0">
+              <strong>College and Term</strong><br>
+              Fresno City College, Fall 2026
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Help Placeholder -->
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="bi bi-question-circle me-2"></i>
+              Using Inventory Tracker
+            </h2>
+          </div>
+
+          <div class="card-body">
+            <!-- TODO:
+                 Add detailed user instructions after the application's
+                 workflows and features have been finalized.
+
+                 Planned topics may include:
+                 - Scanning UPC barcodes
+                 - Adding inventory manually
+                 - Managing item quantities
+                 - Categories and locations
+                 - Low-stock monitoring
+                 - Activity and reports
+                 - Importing and exporting inventory
+                 - Local browser storage and backups
+            -->
+
+            <div class="alert alert-light border mb-0" role="alert">
+              <i class="bi bi-tools me-2"></i>
+              <strong>Documentation coming soon.</strong>
+              Detailed instructions will be added as Inventory Tracker's
+              features are finalized.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- END: Page Content -->
+
+
+    <!-- ==========================================
+         START: Footer
+         ========================================== -->
+    <footer class="footer-custom">
+      <div class="footer-left">
+        <span class="footer-logo">
+          <i class="bi bi-box-seam-fill"></i> Inventory Tracker
+        </span>
+
+        <span class="footer-separator">|</span>
+
+        <span class="footer-copy">
+          &copy; 2026 Inventory Tracker •
+          Template by
+          <a href="https://sparkadminpro.gumroad.com/" target="_blank">Spark Admin</a>
+          • Distributed by
+          <a href="https://www.themewagon.com/" target="_blank">ThemeWagon</a>
+        </span>
+      </div>
+
+      <div class="footer-right">
+        <ul class="footer-links">
+          <li>
+            <a href="index.html" class="footer-link">Dashboard</a>
+          </li>
+          <li>
+            <a href="about.html" class="footer-link">Help / About</a>
+          </li>
+          <li>
+            <a href="sitemap.html" class="footer-link">Site Map</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+    <!-- END: Footer -->
+
+  </div>
+  <!-- END: Main Content Area -->
+
+
+  <!-- Bootstrap -->
+  <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- ApexCharts -->
+  <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+  <!-- Flatpickr -->
+  <script src="assets/libs/flatpickr/flatpickr.min.js"></script>
+
+  <!-- Dashboard / Shared Template Behavior -->
+  <script src="assets/js/dashboard.js"></script>
+
+</body>
+
+</html>
