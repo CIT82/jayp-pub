@@ -21,6 +21,26 @@
 
   <!-- Main Design System & Custom Stylesheet -->
   <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- Collapsible sidebar navigation (uses existing Spark Admin submenu styles) -->
+  <style>
+    .sidebar-menu-link[type="button"] {
+      width: 100%;
+      border: 0;
+      text-align: left;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .sidebar-menu-link[type="button"]:not(:hover):not(.active) {
+      background: transparent;
+    }
+
+    .sidebar-submenu-link.active {
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+  </style>
 </head>
 
 <body>
@@ -37,53 +57,129 @@
     </a>
 
     <!-- Navigation Menu -->
-    <div class="flex-grow-1 overflow-y-auto">
+    <nav class="flex-grow-1 overflow-y-auto" aria-label="Main navigation">
+      <!-- Dashboard: direct link -->
       <div class="sidebar-menu-section">
-        <div class="sidebar-menu-title">Dashboard</div>
         <ul class="sidebar-menu-list">
           <li class="sidebar-menu-item">
-            <a href="index.html" class="sidebar-menu-link active" title="Dashboard">
-              <i class="bi bi-grid-fill"></i><span>Dashboard / Home</span>
+            <a href="index.html" class="sidebar-menu-link active" title="Dashboard" aria-current="page">
+              <i class="bi bi-grid-fill"></i>
+              <span>Dashboard</span>
             </a>
           </li>
         </ul>
       </div>
 
+      <!-- Inventory: expandable group -->
       <div class="sidebar-menu-section">
-        <div class="sidebar-menu-title">Inventory</div>
         <ul class="sidebar-menu-list">
-          <li class="sidebar-menu-item"><a href="inventory.html" class="sidebar-menu-link" title="All Inventory"><i class="bi bi-boxes"></i><span>All Inventory</span></a></li>
-          <li class="sidebar-menu-item"><a href="scan.html" class="sidebar-menu-link" title="Scan Item"><i class="bi bi-upc-scan"></i><span>Scan Item</span></a></li>
-          <li class="sidebar-menu-item"><a href="add-item.html" class="sidebar-menu-link" title="Add Item"><i class="bi bi-plus-square"></i><span>Add Item</span></a></li>
+          <li class="sidebar-menu-item">
+            <button class="sidebar-menu-link" type="button"
+              data-bs-toggle="collapse" data-bs-target="#inventory-menu"
+              aria-expanded="false" aria-controls="inventory-menu">
+              <i class="bi bi-boxes"></i>
+              <span>Inventory</span>
+              <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
+            </button>
+            <div class="collapse" id="inventory-menu" data-bs-parent="#sidebar">
+              <ul class="sidebar-submenu">
+                <li>
+                  <a href="inventory.html" class="sidebar-submenu-link">All Inventory</a>
+                </li>
+                <li>
+                  <a href="scan.html" class="sidebar-submenu-link">Scan Item</a>
+                </li>
+                <li>
+                  <a href="add-item.html" class="sidebar-submenu-link">Add Item</a>
+                </li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </div>
 
+      <!-- Organize: expandable group -->
       <div class="sidebar-menu-section">
-        <div class="sidebar-menu-title">Organize</div>
         <ul class="sidebar-menu-list">
-          <li class="sidebar-menu-item"><a href="categories.html" class="sidebar-menu-link" title="Categories"><i class="bi bi-tags"></i><span>Categories</span></a></li>
-          <li class="sidebar-menu-item"><a href="locations.html" class="sidebar-menu-link" title="Locations"><i class="bi bi-geo-alt"></i><span>Locations</span></a></li>
-          <li class="sidebar-menu-item"><a href="low-stock.html" class="sidebar-menu-link" title="Low Stock"><i class="bi bi-exclamation-triangle"></i><span>Low Stock</span></a></li>
+          <li class="sidebar-menu-item">
+            <button class="sidebar-menu-link" type="button"
+              data-bs-toggle="collapse" data-bs-target="#organize-menu"
+              aria-expanded="false" aria-controls="organize-menu">
+              <i class="bi bi-folder2-open"></i>
+              <span>Organize</span>
+              <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
+            </button>
+            <div class="collapse" id="organize-menu" data-bs-parent="#sidebar">
+              <ul class="sidebar-submenu">
+                <li>
+                  <a href="categories.html" class="sidebar-submenu-link">Categories</a>
+                </li>
+                <li>
+                  <a href="locations.html" class="sidebar-submenu-link">Locations</a>
+                </li>
+                <li>
+                  <a href="low-stock.html" class="sidebar-submenu-link">Low Stock</a>
+                </li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </div>
 
+      <!-- Tools: expandable group -->
       <div class="sidebar-menu-section">
-        <div class="sidebar-menu-title">Tools</div>
         <ul class="sidebar-menu-list">
-          <li class="sidebar-menu-item"><a href="activity.html" class="sidebar-menu-link" title="Activity and History"><i class="bi bi-clock-history"></i><span>Activity / History</span></a></li>
-          <li class="sidebar-menu-item"><a href="reports.html" class="sidebar-menu-link" title="Reports"><i class="bi bi-bar-chart"></i><span>Reports</span></a></li>
-          <li class="sidebar-menu-item"><a href="import-export.html" class="sidebar-menu-link" title="Import and Export"><i class="bi bi-arrow-left-right"></i><span>Import / Export</span></a></li>
+          <li class="sidebar-menu-item">
+            <button class="sidebar-menu-link" type="button"
+              data-bs-toggle="collapse" data-bs-target="#tools-menu"
+              aria-expanded="false" aria-controls="tools-menu">
+              <i class="bi bi-tools"></i>
+              <span>Tools</span>
+              <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
+            </button>
+            <div class="collapse" id="tools-menu" data-bs-parent="#sidebar">
+              <ul class="sidebar-submenu">
+                <li>
+                  <a href="activity.html" class="sidebar-submenu-link">Activity / History</a>
+                </li>
+                <li>
+                  <a href="reports.html" class="sidebar-submenu-link">Reports</a>
+                </li>
+                <li>
+                  <a href="import-export.html" class="sidebar-submenu-link">Import / Export</a>
+                </li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </div>
 
+      <!-- More: expandable group -->
       <div class="sidebar-menu-section">
-        <div class="sidebar-menu-title">More</div>
         <ul class="sidebar-menu-list">
-          <li class="sidebar-menu-item"><a href="about.html" class="sidebar-menu-link" title="Help and About"><i class="bi bi-question-circle"></i><span>Help / About</span></a></li>
-          <li class="sidebar-menu-item"><a href="sitemap.html" class="sidebar-menu-link" title="Site Map"><i class="bi bi-diagram-3"></i><span>Site Map</span></a></li>
+          <li class="sidebar-menu-item">
+            <button class="sidebar-menu-link" type="button"
+              data-bs-toggle="collapse" data-bs-target="#more-menu"
+              aria-expanded="false" aria-controls="more-menu">
+              <i class="bi bi-three-dots"></i>
+              <span>More</span>
+              <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
+            </button>
+            <div class="collapse" id="more-menu" data-bs-parent="#sidebar">
+              <ul class="sidebar-submenu">
+                <li>
+                  <a href="about.html" class="sidebar-submenu-link">Help / About</a>
+                </li>
+                <li>
+                  <a href="sitemap.html" class="sidebar-submenu-link">Site Map</a>
+                </li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </div>
-    </div>
+
+    </nav>
   </div>
   <!-- ==========================================
          END: Sidebar Component
