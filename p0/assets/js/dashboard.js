@@ -414,4 +414,344 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // -----------------------------------------------------------------
+    // 8. Reports Page Charts (Category Valuation Bar & Stock Health Donut)
+    // -----------------------------------------------------------------
+    const catValuationEl = document.querySelector('#category-valuation-chart');
+    if (catValuationEl) {
+        const catValuationOptions = {
+            series: [{
+                name: 'Valuation ($)',
+                data: [18400, 7820, 6240, 4030, 3910, 2450]
+            }],
+            chart: {
+                type: 'bar',
+                height: 250,
+                toolbar: { show: false },
+                fontFamily: 'Plus Jakarta Sans, sans-serif'
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: true,
+                    barHeight: '58%',
+                    distributed: true
+                }
+            },
+            colors: ['#072F1F', '#B4F105', '#1B4D3E', '#FFB703', '#2A9D8F', '#E76F51'],
+            dataLabels: {
+                enabled: true,
+                textAnchor: 'start',
+                style: {
+                    colors: ['#212529'],
+                    fontSize: '11px',
+                    fontWeight: 600
+                },
+                formatter: function (val) {
+                    return '$' + Number(val).toLocaleString();
+                },
+                offsetX: 10
+            },
+            xaxis: {
+                categories: ['Electronics', 'Packaging', 'Hardware', 'Safety', 'Office Supplies', 'Food & Bev'],
+                labels: {
+                    style: { colors: '#6C7E75', fontSize: '11px' },
+                    formatter: function (val) {
+                        return '$' + (val / 1000) + 'k';
+                    }
+                },
+                axisBorder: { show: false }
+            },
+            yaxis: {
+                labels: {
+                    style: { colors: '#212529', fontSize: '12px', fontWeight: 600 }
+                }
+            },
+            grid: {
+                borderColor: '#E9EFEF',
+                strokeDashArray: 3,
+                xaxis: { lines: { show: true } },
+                yaxis: { lines: { show: false } }
+            },
+            legend: { show: false },
+            tooltip: {
+                theme: 'dark',
+                y: {
+                    formatter: function (val) {
+                        return '$' + Number(val).toLocaleString();
+                    }
+                }
+            }
+        };
+        const catValuationChart = new ApexCharts(catValuationEl, catValuationOptions);
+        catValuationChart.render();
+    }
+
+    const stockHealthEl = document.querySelector('#stock-health-chart');
+    if (stockHealthEl) {
+        const stockHealthOptions = {
+            series: [1258, 20, 6],
+            labels: ['Healthy Stock', 'Low Stock Alert', 'Out of Stock'],
+            chart: {
+                type: 'donut',
+                height: 230,
+                fontFamily: 'Plus Jakarta Sans, sans-serif'
+            },
+            colors: ['#072F1F', '#FFB703', '#DC3545'],
+            dataLabels: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    donut: {
+                        size: '72%',
+                        labels: {
+                            show: true,
+                            name: {
+                                show: true,
+                                fontSize: '12px',
+                                color: '#6C7E75',
+                                offsetY: -4
+                            },
+                            value: {
+                                show: true,
+                                fontSize: '22px',
+                                fontWeight: 700,
+                                color: '#072F1F',
+                                offsetY: 4,
+                                formatter: function (val) {
+                                    return Number(val).toLocaleString();
+                                }
+                            },
+                            total: {
+                                show: true,
+                                label: 'Total SKUs',
+                                fontSize: '11px',
+                                color: '#6C7E75',
+                                formatter: function () {
+                                    return '1,284';
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            stroke: { width: 2, colors: ['#ffffff'] },
+            legend: {
+                position: 'bottom',
+                fontSize: '12px',
+                markers: { radius: 12 },
+                itemMargin: { horizontal: 8, vertical: 4 }
+            },
+            tooltip: {
+                theme: 'dark',
+                y: {
+                    formatter: function (val) {
+                        const total = 1284;
+                        const pct = ((val / total) * 100).toFixed(1);
+                        return val + ' units (' + pct + '%)';
+                    }
+                }
+            }
+        };
+        const stockHealthChart = new ApexCharts(stockHealthEl, stockHealthOptions);
+        stockHealthChart.render();
+    }
+
+    // -----------------------------------------------------------------
+    // 9. Locations Page Chart (Capacity vs Current Units)
+    // -----------------------------------------------------------------
+    const locCapacityEl = document.querySelector('#location-capacity-chart');
+    if (locCapacityEl) {
+        const locCapacityOptions = {
+            series: [
+                {
+                    name: 'Current Stock (Units)',
+                    data: [520, 340, 424]
+                },
+                {
+                    name: 'Max Shelf Capacity',
+                    data: [660, 530, 520]
+                }
+            ],
+            chart: {
+                type: 'bar',
+                height: 240,
+                toolbar: { show: false },
+                fontFamily: 'Plus Jakarta Sans, sans-serif'
+            },
+            colors: ['#072F1F', '#B4F105'],
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '42%',
+                    borderRadius: 3
+                }
+            },
+            dataLabels: { enabled: false },
+            stroke: { show: true, width: 2, colors: ['transparent'] },
+            xaxis: {
+                categories: ['Downtown Retail (Store #1)', 'Westside Branch (Store #2)', 'Central Storage Annex'],
+                labels: {
+                    style: { colors: '#212529', fontSize: '12px', fontWeight: 600 }
+                },
+                axisBorder: { show: false }
+            },
+            yaxis: {
+                labels: {
+                    style: { colors: '#6C7E75', fontSize: '11px' },
+                    formatter: function (val) {
+                        return val + ' units';
+                    }
+                }
+            },
+            grid: {
+                borderColor: '#E9EFEF',
+                strokeDashArray: 3,
+                yaxis: { lines: { show: true } }
+            },
+            legend: { show: false },
+            tooltip: {
+                theme: 'dark',
+                y: {
+                    formatter: function (val) {
+                        return val + ' units';
+                    }
+                }
+            }
+        };
+        const locCapacityChart = new ApexCharts(locCapacityEl, locCapacityOptions);
+        locCapacityChart.render();
+    }
+
+    // -----------------------------------------------------------------
+    // 10. Activity Page Chart (7-Day Stock Velocity Area Trend)
+    // -----------------------------------------------------------------
+    const activityTrendEl = document.querySelector('#activity-trend-chart');
+    if (activityTrendEl) {
+        const activityTrendOptions = {
+            series: [
+                {
+                    name: 'Inbound (Units Received)',
+                    data: [42, 68, 35, 80, 55, 30, 32]
+                },
+                {
+                    name: 'Outbound (Units Used / Sold)',
+                    data: [18, 24, 28, 20, 26, 16, 14]
+                }
+            ],
+            chart: {
+                type: 'area',
+                height: 230,
+                toolbar: { show: false },
+                zoom: { enabled: false },
+                fontFamily: 'Plus Jakarta Sans, sans-serif'
+            },
+            colors: ['#B4F105', '#072F1F'],
+            dataLabels: { enabled: false },
+            stroke: {
+                curve: 'smooth',
+                width: 2
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    opacityFrom: 0.45,
+                    opacityTo: 0.05,
+                    stops: [0, 95, 100]
+                }
+            },
+            xaxis: {
+                categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                labels: {
+                    style: { colors: '#6C7E75', fontSize: '11px', fontWeight: 500 }
+                },
+                axisBorder: { show: false }
+            },
+            yaxis: {
+                labels: {
+                    style: { colors: '#6C7E75', fontSize: '11px' }
+                }
+            },
+            grid: {
+                borderColor: '#E9EFEF',
+                strokeDashArray: 3,
+                yaxis: { lines: { show: true } }
+            },
+            legend: { show: false },
+            tooltip: {
+                theme: 'dark',
+                y: {
+                    formatter: function (val) {
+                        return val + ' units';
+                    }
+                }
+            }
+        };
+        const activityTrendChart = new ApexCharts(activityTrendEl, activityTrendOptions);
+        activityTrendChart.render();
+    }
+
+    // -----------------------------------------------------------------
+    // 11. Categories Page Chart (Category Item Treemap)
+    // -----------------------------------------------------------------
+    const catTreemapEl = document.querySelector('#category-treemap-chart');
+    if (catTreemapEl) {
+        const catTreemapOptions = {
+            series: [
+                {
+                    data: [
+                        { x: 'Packaging & Shipping', y: 412 },
+                        { x: 'Safety & Maintenance', y: 217 },
+                        { x: 'Office Supplies', y: 215 },
+                        { x: 'Electronics', y: 184 },
+                        { x: 'Hardware & Tools', y: 164 },
+                        { x: 'Food & Beverage', y: 92 }
+                    ]
+                }
+            ],
+            chart: {
+                type: 'treemap',
+                height: 240,
+                toolbar: { show: false },
+                fontFamily: 'Plus Jakarta Sans, sans-serif'
+            },
+            colors: ['#072F1F', '#1B4D3E', '#2D6A4F', '#40916C', '#52B788', '#B4F105'],
+            plotOptions: {
+                treemap: {
+                    distributed: true,
+                    enableShades: false,
+                    borderRadius: 4
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                style: {
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    colors: ['#ffffff']
+                },
+                formatter: function (text, op) {
+                    return [text, op.value + ' items'];
+                },
+                offsetY: -2
+            },
+            legend: { show: false },
+            tooltip: {
+                theme: 'dark',
+                y: {
+                    formatter: function (val) {
+                        const total = 1284;
+                        const pct = ((val / total) * 100).toFixed(1);
+                        return val + ' items (' + pct + '% of catalog)';
+                    }
+                }
+            }
+        };
+        const catTreemapChart = new ApexCharts(catTreemapEl, catTreemapOptions);
+        catTreemapChart.render();
+    }
 });
+

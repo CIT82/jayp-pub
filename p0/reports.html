@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>About - Inventory Tracker</title>
+  <title>Reports - Inventory Tracker</title>
 
-  <meta name="description" content="About the Inventory Tracker web application.">
+  <meta name="description" content="Generate inventory valuation, stock level analysis, and turnover reports.">
   <meta name="author" content="Jay C. Parangalan">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/favicon.ico">
 
-  <!-- Local Third-Party Libraries -->
+  <!-- Local Third-Party Libraries (100% Offline Compatible) -->
   <link rel="stylesheet" href="assets/libs/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/libs/bootstrap-icons/bootstrap-icons.css">
   <link rel="stylesheet" href="assets/libs/apexcharts/apexcharts.css">
@@ -21,6 +21,7 @@
 
   <!-- Main Design System & Custom Stylesheet -->
   <link rel="stylesheet" href="assets/css/main.css">
+
   <!-- Collapsible sidebar navigation (uses existing Spark Admin submenu styles) -->
   <style>
     .sidebar-menu-link[type="button"] {
@@ -133,21 +134,21 @@
       <div class="sidebar-menu-section">
         <ul class="sidebar-menu-list">
           <li class="sidebar-menu-item">
-            <button class="sidebar-menu-link" type="button"
+            <button class="sidebar-menu-link active" type="button"
               data-bs-toggle="collapse" data-bs-target="#tools-menu"
-              aria-expanded="false" aria-controls="tools-menu">
+              aria-expanded="true" aria-controls="tools-menu">
               <i class="bi bi-tools"></i>
               <span>Tools</span>
               <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
             </button>
 
-            <div class="collapse" id="tools-menu" data-bs-parent="#sidebar">
+            <div class="collapse show" id="tools-menu" data-bs-parent="#sidebar">
               <ul class="sidebar-submenu">
                 <li>
                   <a href="activity.html" class="sidebar-submenu-link">Activity / History</a>
                 </li>
                 <li>
-                  <a href="reports.html" class="sidebar-submenu-link">Reports</a>
+                  <a href="reports.html" class="sidebar-submenu-link active" aria-current="page">Reports</a>
                 </li>
                 <li>
                   <a href="import-export.html" class="sidebar-submenu-link">Import / Export</a>
@@ -162,18 +163,18 @@
       <div class="sidebar-menu-section">
         <ul class="sidebar-menu-list">
           <li class="sidebar-menu-item">
-            <button class="sidebar-menu-link active" type="button"
+            <button class="sidebar-menu-link" type="button"
               data-bs-toggle="collapse" data-bs-target="#more-menu"
-              aria-expanded="true" aria-controls="more-menu">
+              aria-expanded="false" aria-controls="more-menu">
               <i class="bi bi-three-dots"></i>
               <span>More</span>
               <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
             </button>
 
-            <div class="collapse show" id="more-menu" data-bs-parent="#sidebar">
+            <div class="collapse" id="more-menu" data-bs-parent="#sidebar">
               <ul class="sidebar-submenu">
                 <li>
-                  <a href="about.html" class="sidebar-submenu-link active" aria-current="page">Help / About</a>
+                  <a href="about.html" class="sidebar-submenu-link">Help / About</a>
                 </li>
                 <li>
                   <a href="sitemap.html" class="sidebar-submenu-link">Site Map</a>
@@ -364,136 +365,270 @@
     <!-- END: Top Navbar Component -->
 
 
-    <!-- Page Header -->
+    <!-- ==========================================
+         START: Page Header
+         ========================================== -->
     <div class="page-header">
+
       <div>
-        <h1 class="page-title">Help / About</h1>
+        <h1 class="page-title">Reports</h1>
+
         <p class="page-subtitle">
-          Information about Inventory Tracker and its development.
+          Generate and review inventory valuations, turnover metrics, and reorder projections.
         </p>
       </div>
+
+      <div class="d-flex flex-wrap gap-2">
+        <button type="button" class="btn btn-outline-secondary rounded-pill px-3">
+          <i class="bi bi-printer me-1"></i> Print Summary
+        </button>
+        <button type="button" class="btn btn-dark-custom">
+          <span class="icon-wrap"><i class="bi bi-file-earmark-pdf"></i></span>
+          <span>Export Valuation Report</span>
+        </button>
+      </div>
+
     </div>
+    <!-- END: Page Header -->
 
 
     <!-- ==========================================
          START: Page Content
          ========================================== -->
-    <div class="row g-4">
 
-      <!-- About Inventory Tracker -->
-      <div class="col-lg-7">
-        <div class="card h-100">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="bi bi-box-seam me-2"></i>
-              About Inventory Tracker
-            </h2>
-          </div>
-
-          <div class="card-body">
-            <p>
-              Inventory Tracker is a browser-based inventory management
-              application designed to make it easy to add, organize, monitor,
-              and review inventory.
-            </p>
-
-            <p class="mb-0">
-              The application is being developed as a project for
-              CIT-82: Introduction to Web Development at Fresno City College.
-            </p>
-          </div>
+    <!-- Valuation & Health KPI Row -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="card p-3">
+          <span class="stat-label">Total Inventory Value</span>
+          <div class="stat-value fs-3 text-dark">$42,850</div>
+          <small class="text-success"><i class="bi bi-arrow-up-right me-1"></i> +8.4% this quarter</small>
         </div>
       </div>
-
-
-      <!-- Developer Information -->
-      <div class="col-lg-5">
-        <div class="card h-100">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="bi bi-person-badge me-2"></i>
-              Developer Information
-            </h2>
-          </div>
-
-          <div class="card-body">
-            <p class="mb-2">
-              <strong>Created by</strong><br>
-              Jay C. Parangalan
-            </p>
-
-            <p class="mb-2">
-              <strong>Course</strong><br>
-              CIT-82: Introduction to Web Development
-            </p>
-
-            <p class="mb-0">
-              <strong>College and Term</strong><br>
-              Fresno City College, Fall 2026
-            </p>
-          </div>
+      <div class="col-6 col-md-3">
+        <div class="card p-3">
+          <span class="stat-label">Monthly Turnover</span>
+          <div class="stat-value fs-3 text-main">4.2x</div>
+          <small class="text-muted"><i class="bi bi-arrow-repeat me-1"></i> Healthy velocity</small>
         </div>
       </div>
+      <div class="col-6 col-md-3">
+        <div class="card p-3">
+          <span class="stat-label">Stock Health Score</span>
+          <div class="stat-value fs-3 text-success">98%</div>
+          <small class="text-success"><i class="bi bi-shield-check me-1"></i> In optimal range</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card p-3">
+          <span class="stat-label">Avg Days in Stock</span>
+          <div class="stat-value fs-3 text-dark">18 Days</div>
+          <small class="text-muted"><i class="bi bi-calendar-check me-1"></i> Fast-moving baseline</small>
+        </div>
+      </div>
+    </div>
 
+    <!-- Analytics Breakdown Grid -->
+    <div class="row g-4 mb-4">
 
-      <!-- Help Placeholder -->
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="bi bi-question-circle me-2"></i>
-              Using Inventory Tracker
+      <!-- Left Column: Category Valuation Breakdown -->
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex align-items-center justify-content-between">
+            <h2 class="card-title mb-0">
+              <i class="bi bi-pie-chart me-2 text-success"></i>
+              Valuation by Category
             </h2>
+            <span class="badge bg-light text-dark border">6 Groups</span>
           </div>
 
-          <div class="card-body">
-            <!-- TODO:
-                 Add detailed user instructions after the application's
-                 workflows and features have been finalized.
-
-                 Planned topics may include:
-                 - Scanning UPC barcodes
-                 - Adding inventory manually
-                 - Managing item quantities
-                 - Categories and locations
-                 - Low-stock monitoring
-                 - Activity and reports
-                 - Importing and exporting inventory
-                 - Local browser storage and backups
-            -->
-
-            <div class="alert alert-light border mb-0" role="alert">
-              <i class="bi bi-tools me-2"></i>
-              <strong>Documentation coming soon.</strong>
-              Detailed instructions will be added as Inventory Tracker's
-              features are finalized.
+          <div class="card-body p-4">
+            <div id="category-valuation-chart" style="min-height: 250px;"></div>
+            <div class="d-flex justify-content-between small text-muted border-top pt-3 mt-2">
+              <span><i class="bi bi-info-circle me-1"></i> Top: <strong>Electronics ($18.4k)</strong></span>
+              <span>Total Value: <strong>$42,850.00</strong></span>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Right Column: Stock Health Distribution -->
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex align-items-center justify-content-between">
+            <h2 class="card-title mb-0">
+              <i class="bi bi-activity me-2 text-success"></i>
+              Stock Health Status
+            </h2>
+            <span class="badge bg-light text-dark border">1,284 Total Units</span>
+          </div>
+
+          <div class="card-body p-4 d-flex flex-column justify-content-between">
+
+            <div>
+              <div id="stock-health-chart" style="min-height: 230px;"></div>
+
+              <div class="list-group list-group-flush mt-2">
+                <div class="list-group-item d-flex justify-content-between align-items-center px-0 py-2">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="legend-dot bg-forest-medium"></span>
+                    <span class="fw-semibold small">Healthy Stock Level</span>
+                  </div>
+                  <div class="text-end">
+                    <span class="fw-bold small">1,258 items</span>
+                    <span class="text-muted small ms-1">(98%)</span>
+                  </div>
+                </div>
+
+                <div class="list-group-item d-flex justify-content-between align-items-center px-0 py-2">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="legend-dot bg-warning"></span>
+                    <span class="fw-semibold small">Low Stock Alert</span>
+                  </div>
+                  <div class="text-end">
+                    <span class="fw-bold text-warning small">20 items</span>
+                    <span class="text-muted small ms-1">(1.5%)</span>
+                  </div>
+                </div>
+
+                <div class="list-group-item d-flex justify-content-between align-items-center px-0 py-2">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="legend-dot bg-danger"></span>
+                    <span class="fw-semibold small">Out of Stock</span>
+                  </div>
+                  <div class="text-end">
+                    <span class="fw-bold text-danger small">6 items</span>
+                    <span class="text-muted small ms-1">(0.5%)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-top mt-2">
+              <a href="low-stock.html" class="btn btn-outline-dark btn-sm rounded-pill w-100">
+                Review Low Stock Items &rarr;
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Top Velocity Items Table Card -->
+    <div class="table-card-custom">
+      <div class="table-header-control">
+        <h2 class="card-title mb-0 fs-6">
+          <i class="bi bi-lightning-charge me-2 text-warning"></i>
+          Fastest-Moving Inventory Items (Past 30 Days)
+        </h2>
+        <span class="badge bg-light text-dark border">Ranked by Volume</span>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table-custom">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Item / SKU</th>
+              <th>Category</th>
+              <th class="text-center">Units Shipped</th>
+              <th class="text-center">Current Qty</th>
+              <th>Turnover Velocity</th>
+              <th class="text-end">Valuation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fw-bold text-muted">#1</td>
+              <td>
+                <div class="table-user-cell">
+                  <div class="sitemap-item-icon m-0" style="width:32px; height:32px; min-width:32px; font-size:0.85rem;">
+                    <i class="bi bi-box-seam text-dark"></i>
+                  </div>
+                  <div>
+                    <div class="table-user-name">Heavy-Duty Shipping Tape (6pk)</div>
+                    <div class="table-user-sub">SKU: PACK-1104</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge bg-light text-dark border">Packaging</span></td>
+              <td class="text-center fw-bold text-success">142 units</td>
+              <td class="text-center fw-bold">88</td>
+              <td><span class="badge-table success">High (5.4x)</span></td>
+              <td class="text-end fw-bold">$1,628.00</td>
+            </tr>
+
+            <tr>
+              <td class="fw-bold text-muted">#2</td>
+              <td>
+                <div class="table-user-cell">
+                  <div class="sitemap-item-icon m-0" style="width:32px; height:32px; min-width:32px; font-size:0.85rem;">
+                    <i class="bi bi-archive text-dark"></i>
+                  </div>
+                  <div>
+                    <div class="table-user-name">Corrugated Shipping Boxes (Med)</div>
+                    <div class="table-user-sub">SKU: PACK-2201</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge bg-light text-dark border">Packaging</span></td>
+              <td class="text-center fw-bold text-success">98 units</td>
+              <td class="text-center fw-bold">150</td>
+              <td><span class="badge-table success">High (4.8x)</span></td>
+              <td class="text-end fw-bold">$2,250.00</td>
+            </tr>
+
+            <tr>
+              <td class="fw-bold text-muted">#3</td>
+              <td>
+                <div class="table-user-cell">
+                  <div class="sitemap-item-icon m-0" style="width:32px; height:32px; min-width:32px; font-size:0.85rem;">
+                    <i class="bi bi-cup-hot text-dark"></i>
+                  </div>
+                  <div>
+                    <div class="table-user-name">Arabica Coffee Beans 2lb</div>
+                    <div class="table-user-sub">SKU: FOOD-3310</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge bg-light text-dark border">Food &amp; Beverage</span></td>
+              <td class="text-center fw-bold text-success">64 units</td>
+              <td class="text-center fw-bold text-warning">6</td>
+              <td><span class="badge-table pending">Moderate (3.9x)</span></td>
+              <td class="text-end fw-bold">$147.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <!-- END: Page Content -->
 
 
-    <!-- ==========================================
-         START: Footer
-         ========================================== -->
+    <!-- START: Footer Component -->
     <footer class="footer-custom">
+
       <div class="footer-left">
+
         <span class="footer-logo">
-          <i class="bi bi-box-seam-fill"></i> Inventory Tracker
+          <i class="bi bi-box-seam-fill"></i>
+          Inventory Tracker
         </span>
 
         <span class="footer-separator">|</span>
 
         <span class="footer-copy">
-          &copy; 2026 Inventory Tracker •
-          Template by
-          <a href="https://sparkadminpro.gumroad.com/" target="_blank">Spark Admin</a>
-          • Distributed by
-          <a href="https://www.themewagon.com/" target="_blank">ThemeWagon</a>
+          &copy; 2026 Inventory Tracker &bull; Template by
+          <a href="https://sparkadminpro.gumroad.com/" target="_blank">
+            Spark Admin
+          </a>
+          &bull; Distributed by
+          <a href="https://www.themewagon.com/" target="_blank">
+            ThemeWagon
+          </a>
         </span>
+
       </div>
 
       <div class="footer-right">
@@ -509,23 +644,22 @@
           </li>
         </ul>
       </div>
+
     </footer>
-    <!-- END: Footer -->
+    <!-- END: Footer Component -->
 
   </div>
-  <!-- END: Main Content Area -->
+  <!-- ==========================================
+         END: Main Content Area
+         ========================================== -->
 
 
-  <!-- Bootstrap -->
+  <!-- Local Third-Party Libraries Script dependencies -->
   <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- ApexCharts -->
   <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
-
-  <!-- Flatpickr -->
   <script src="assets/libs/flatpickr/flatpickr.min.js"></script>
 
-  <!-- Dashboard / Shared Template Behavior -->
+  <!-- Local dashboard / shared site interactions controller -->
   <script src="assets/js/dashboard.js"></script>
 
 </body>

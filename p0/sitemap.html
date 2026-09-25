@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Site Map - Inventory Tracker</title>
+
+  <meta name="description" content="Site map showing the hierarchy of all Inventory Tracker pages.">
+  <meta name="author" content="Jay C. Parangalan">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.ico">
+
+  <!-- Local Third-Party Libraries (100% Offline Compatible) -->
+  <link rel="stylesheet" href="assets/libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/libs/bootstrap-icons/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/libs/apexcharts/apexcharts.css">
+  <link rel="stylesheet" href="assets/libs/flatpickr/flatpickr.min.css">
+
+  <!-- Main Design System & Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- Collapsible sidebar navigation & Touch-friendly Site Map styles -->
+  <style>
+    .sidebar-menu-link[type="button"] {
+      width: 100%;
+      border: 0;
+      text-align: left;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .sidebar-menu-link[type="button"]:not(:hover):not(.active) {
+      background: transparent;
+    }
+
+    .sidebar-submenu-link.active {
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+
+    /* Horizontal touch chips for fast section navigation on mobile */
+    .jump-pills-container {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 0.5rem;
+      padding-bottom: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+
+    .jump-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.95rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #334155;
+      background-color: #ffffff;
+      border: 1px solid #E2E8F0;
+      border-radius: 50rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.15s ease-in-out;
+    }
+
+    .jump-pill:hover,
+    .jump-pill:focus {
+      color: #ffffff;
+      background-color: #072F1F;
+      border-color: #072F1F;
+    }
+
+    /* Touch-optimized sitemap item rows */
+    .sitemap-touch-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.95rem 1.25rem;
+      text-decoration: none;
+      color: inherit;
+      border-bottom: 1px solid #F1F5F9;
+      min-height: 48px;
+      transition: background-color 0.15s ease-in-out;
+    }
+
+    .sitemap-touch-item:last-child {
+      border-bottom: 0;
+    }
+
+    .sitemap-touch-item:hover,
+    .sitemap-touch-item:focus {
+      background-color: #F8FAFC;
+      color: #072F1F;
+    }
+
+    .sitemap-touch-item:active {
+      background-color: #EDF5F0;
+    }
+
+    .sitemap-touch-item.current-page {
+      background-color: rgba(180, 241, 5, 0.08);
+      border-left: 3px solid #072F1F;
+    }
+
+    /* Icon badge for each sitemap entry */
+    .sitemap-item-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #F1F5F9;
+      color: #072F1F;
+      font-size: 1.2rem;
+      margin-right: 1rem;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .sitemap-touch-item:hover .sitemap-item-icon {
+      background-color: #072F1F;
+      color: #B4F105;
+    }
+
+    /* Trailing indicator */
+    .sitemap-chevron {
+      color: #94A3B8;
+      font-size: 1.1rem;
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+
+    .sitemap-touch-item:hover .sitemap-chevron {
+      color: #072F1F;
+      transform: translateX(3px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================================
+         START: Sidebar Component
+         Highly polished, dark-green sticky navigation
+         ========================================== -->
+  <div class="sidebar-wrapper" id="sidebar">
+
+    <!-- Brand Logo / Identity -->
+    <a href="index.html" class="sidebar-brand">
+      <i class="bi bi-box-seam-fill"></i>
+      <span>Inventory Tracker</span>
+    </a>
+
+    <!-- Navigation Menu -->
+    <nav class="flex-grow-1 overflow-y-auto" aria-label="Main navigation">
+
+      <!-- Dashboard: direct link -->
+      <div class="sidebar-menu-section">
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <a href="index.html" class="sidebar-menu-link" title="Dashboard">
+              <i class="bi bi-grid-fill"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Inventory: expandable group -->
+      <div class="sidebar-menu-section">
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <button class="sidebar-menu-link" type="button"
+              data-bs-toggle="collapse" data-bs-target="#inventory-menu"
+              aria-expanded="false" aria-controls="inventory-menu">
+              <i class="bi bi-boxes"></i>
+              <span>Inventory</span>
+              <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
+            </button>
+
+            <div class="collapse" id="inventory-menu" data-bs-parent="#sidebar">
+              <ul class="sidebar-submenu">
+                <li>
+                  <a href="inventory.html" class="sidebar-submenu-link">All Inventory</a>
+                </li>
+                <li>
+                  <a href="scan.html" class="sidebar-submenu-link">Scan Item</a>
+                </li>
+                <li>
+                  <a href="add-item.html" class="sidebar-submenu-link">Add Item</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Organize: expandable group -->
+      <div class="sidebar-menu-section">
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <button class="sidebar-menu-link" type="button"
+              data-bs-toggle="collapse" data-bs-target="#organize-menu"
+              aria-expanded="false" aria-controls="organize-menu">
+              <i class="bi bi-folder2-open"></i>
+              <span>Organize</span>
+              <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
+            </button>
+
+            <div class="collapse" id="organize-menu" data-bs-parent="#sidebar">
+              <ul class="sidebar-submenu">
+                <li>
+                  <a href="categories.html" class="sidebar-submenu-link">Categories</a>
+                </li>
+                <li>
+                  <a href="locations.html" class="sidebar-submenu-link">Locations</a>
+                </li>
+                <li>
+                  <a href="low-stock.html" class="sidebar-submenu-link">Low Stock</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Tools: expandable group -->
+      <div class="sidebar-menu-section">
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <button class="sidebar-menu-link" type="button"
+              data-bs-toggle="collapse" data-bs-target="#tools-menu"
+              aria-expanded="false" aria-controls="tools-menu">
+              <i class="bi bi-tools"></i>
+              <span>Tools</span>
+              <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
+            </button>
+
+            <div class="collapse" id="tools-menu" data-bs-parent="#sidebar">
+              <ul class="sidebar-submenu">
+                <li>
+                  <a href="activity.html" class="sidebar-submenu-link">Activity / History</a>
+                </li>
+                <li>
+                  <a href="reports.html" class="sidebar-submenu-link">Reports</a>
+                </li>
+                <li>
+                  <a href="import-export.html" class="sidebar-submenu-link">Import / Export</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- More: expandable group -->
+      <div class="sidebar-menu-section">
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <button class="sidebar-menu-link active" type="button"
+              data-bs-toggle="collapse" data-bs-target="#more-menu"
+              aria-expanded="true" aria-controls="more-menu">
+              <i class="bi bi-three-dots"></i>
+              <span>More</span>
+              <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
+            </button>
+
+            <div class="collapse show" id="more-menu" data-bs-parent="#sidebar">
+              <ul class="sidebar-submenu">
+                <li>
+                  <a href="about.html" class="sidebar-submenu-link">Help / About</a>
+                </li>
+                <li>
+                  <a href="sitemap.html" class="sidebar-submenu-link active" aria-current="page">Site Map</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+  </div>
+  <!-- ==========================================
+         END: Sidebar Component
+         ========================================== -->
+
+
+  <!-- ==========================================
+         START: Main Content Area
+         ========================================== -->
+  <div class="main-wrapper">
+
+    <!-- START: Top Navbar Component -->
+    <header class="navbar-custom">
+
+      <div class="navbar-left">
+
+        <!-- Desktop sidebar toggle (visible on large screens only) -->
+        <button class="btn-desktop-toggle d-none d-xl-flex align-items-center justify-content-center me-3"
+          id="desktop-sidebar-toggle" aria-label="Minimize Sidebar">
+          <i class="bi bi-chevron-bar-left"></i>
+        </button>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle-btn me-2" id="sidebar-toggle" aria-label="Toggle Navigation">
+          <i class="bi bi-list"></i>
+        </button>
+
+        <!-- Quick Actions Dropdown -->
+        <div class="dropdown ms-2">
+          <button class="btn-quick-action dropdown-toggle" type="button"
+            data-bs-toggle="dropdown" aria-expanded="false"
+            id="quick-actions-dropdown">
+            <i class="bi bi-plus-lg"></i>
+            <span>Quick Actions</span>
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-quick-action"
+            aria-labelledby="quick-actions-dropdown">
+            <li class="dropdown-header">Inventory Shortcuts</li>
+            <li>
+              <a class="dropdown-item" href="scan.html">
+                <i class="bi bi-upc-scan"></i> Scan Item
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="add-item.html">
+                <i class="bi bi-plus-square"></i> Add Item
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="import-export.html">
+                <i class="bi bi-arrow-left-right"></i> Import Inventory
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Mid navbar: search pill -->
+      <div class="navbar-search-wrapper">
+        <input type="text" class="navbar-search-input"
+          placeholder="Search inventory..." id="main-search">
+
+        <button class="navbar-search-btn" aria-label="Search">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+
+      <!-- Right actions -->
+      <div class="navbar-actions">
+
+        <!-- Fullscreen -->
+        <button class="navbar-action-btn me-1"
+          aria-label="Toggle Fullscreen"
+          id="btn-fullscreen">
+          <i class="bi bi-arrows-fullscreen"></i>
+        </button>
+
+        <!-- Inventory Notifications -->
+        <div class="dropdown">
+          <button class="navbar-action-btn dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            id="btn-notifications"
+            data-bs-auto-close="outside"
+            aria-label="Inventory notifications">
+            <i class="bi bi-bell"></i>
+            <span class="navbar-action-badge"></span>
+          </button>
+
+          <div class="dropdown-menu dropdown-menu-end dropdown-menu-notification p-0"
+            aria-labelledby="btn-notifications">
+
+            <div class="notification-header">
+              <h6 class="notification-title">Inventory Alerts</h6>
+            </div>
+
+            <div class="notification-list">
+
+              <a href="low-stock.html" class="notification-item">
+                <div class="notification-icon bg-warning text-dark">
+                  <i class="bi bi-exclamation-triangle-fill"></i>
+                </div>
+
+                <div class="notification-content">
+                  <p class="notification-text">
+                    Some inventory items are <strong>running low</strong>.
+                  </p>
+                  <span class="notification-time">
+                    View low-stock items
+                  </span>
+                </div>
+
+                <span class="notification-unread-dot"></span>
+              </a>
+
+              <a href="activity.html" class="notification-item">
+                <div class="notification-icon bg-success text-white">
+                  <i class="bi bi-clock-history"></i>
+                </div>
+
+                <div class="notification-content">
+                  <p class="notification-text">
+                    Review your latest <strong>inventory activity</strong>.
+                  </p>
+                  <span class="notification-time">
+                    View activity history
+                  </span>
+                </div>
+              </a>
+
+            </div>
+
+            <a href="activity.html" class="notification-footer">
+              View Activity / History
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Resources -->
+        <div class="dropdown ms-2">
+          <button class="navbar-profile-btn dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+
+            <i class="bi bi-question-circle fs-5"></i>
+
+            <span class="navbar-profile-name d-none d-md-inline">
+              Resources
+            </span>
+
+            <i class="bi bi-chevron-down navbar-profile-caret"></i>
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-profile">
+            <li>
+              <a class="dropdown-item" href="about.html">
+                <i class="bi bi-question-circle"></i> Help / About
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="sitemap.html">
+                <i class="bi bi-diagram-3"></i> Site Map
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </header>
+    <!-- END: Top Navbar Component -->
+
+
+    <!-- ==========================================
+         START: Page Header
+         ========================================== -->
+    <div class="page-header flex-column align-items-start gap-3">
+
+      <div>
+        <h1 class="page-title">Site Map</h1>
+
+        <p class="page-subtitle">
+          Structure and direct directory of all sections in the Inventory Tracker application.
+        </p>
+      </div>
+
+      <!-- Mobile Touch Quick Jump Chips -->
+      <div class="w-100">
+        <div class="jump-pills-container" aria-label="Jump to section">
+          <a href="#section-inventory" class="jump-pill">
+            <i class="bi bi-boxes"></i> Inventory
+          </a>
+          <a href="#section-organize" class="jump-pill">
+            <i class="bi bi-folder2-open"></i> Organize
+          </a>
+          <a href="#section-tools" class="jump-pill">
+            <i class="bi bi-tools"></i> Tools
+          </a>
+          <a href="#section-resources" class="jump-pill">
+            <i class="bi bi-three-dots"></i> Resources
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <!-- END: Page Header -->
+
+
+    <!-- ==========================================
+         START: Page Content
+         ========================================== -->
+    <div class="row g-4">
+
+      <!-- 1. Inventory Management Section -->
+      <div class="col-12 col-lg-6" id="section-inventory">
+        <div class="card h-100">
+          <div class="card-header d-flex align-items-center justify-content-between">
+            <h2 class="card-title mb-0">
+              <i class="bi bi-boxes me-2 text-success"></i>
+              Inventory Management
+            </h2>
+            <span class="badge bg-light text-dark border">3 Pages</span>
+          </div>
+
+          <div class="card-body p-0">
+
+            <a href="inventory.html" class="sitemap-touch-item">
+              <div class="d-flex align-items-center">
+                <span class="sitemap-item-icon">
+                  <i class="bi bi-boxes"></i>
+                </span>
+                <div>
+                  <div class="fw-bold text-dark">All Inventory</div>
+                  <small class="text-muted d-block">
+                    Full catalog table with search, filter, and sorting capabilities.
+                  </small>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right sitemap-chevron ms-3"></i>
+            </a>
+
+            <a href="scan.html" class="sitemap-touch-item">
+              <div class="d-flex align-items-center">
+                <span class="sitemap-item-icon">
+                  <i class="bi bi-upc-scan"></i>
+                </span>
+                <div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="fw-bold text-dark">Scan Item</span>
+                    <span class="badge bg-success bg-opacity-25 text-success rounded-pill px-2">Camera</span>
+                  </div>
+                  <small class="text-muted d-block">
+                    Mobile camera barcode & QR code reader for rapid stock lookup and counting.
+                  </small>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right sitemap-chevron ms-3"></i>
+            </a>
+
+            <a href="add-item.html" class="sitemap-touch-item">
+              <div class="d-flex align-items-center">
+                <span class="sitemap-item-icon">
+                  <i class="bi bi-plus-square"></i>
+                </span>
+                <div>
+                  <div class="fw-bold text-dark">Add Item</div>
+                  <small class="text-muted d-block">
+                    Create new stock item records with SKU, category, reorder point, and location.
+                  </small>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right sitemap-chevron ms-3"></i>
+            </a>
+
+          </div>
+
+          <div class="card-footer bg-white border-top py-2 px-3">
+            <small class="text-muted">
+              <i class="bi bi-info-circle me-1"></i>
+              <strong>Note:</strong> <em>Item Details</em> is accessed contextually by selecting an inventory item in tables or scan results rather than in the primary navbar.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Organization Section -->
+      <div class="col-12 col-lg-6" id="section-organize">
+        <div class="card h-100">
+          <div class="card-header d-flex align-items-center justify-content-between">
+            <h2 class="card-title mb-0">
+              <i class="bi bi-folder2-open me-2 text-success"></i>
+              Organization
+            </h2>
+            <span class="badge bg-light text-dark border">3 Pages</span>
+          </div>
+
+          <div class="card-body p-0">
+
+            <a href="categories.html" class="sitemap-touch-item">
+              <div class="d-flex align-items-center">
+                <span class="sitemap-item-icon">
+                  <i class="bi bi-tags"></i>
+                </span>
+                <div>
+                  <div class="fw-bold text-dark">Categories</div>
+                  <small class="text-muted d-block">
+                    Classify items into departments, product lines, and item types.
+                  </small>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right sitemap-chevron ms-3"></i>
+            </a>
+
+            <a href="locations.html" class="sitemap-touch-item">
+              <div class="d-flex align-items-center">
+                <span class="sitemap-item-icon">
+                  <i class="bi bi-geo-alt"></i>
+                </span>
+                <div>
+                  <div class="fw-bold text-dark">Locations</div>
+                  <small class="text-muted d-block">
+                    Track storage locations, warehouse rooms, aisles, shelves, and bins.
+                  </small>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right sitemap-chevron ms-3"></i>
+            </a>
+
+            <a href="low-stock.html" class="sitemap-touch-item">
+              <div class="d-flex align-items-center">
+                <span class="sitemap-item-icon">
+                  <i class="bi bi-exclamation-triangle"></i>
+                </span>
+                <div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="fw-bold text-dark">Low Stock</span>
+                    <span class="badge bg-warning text-dark rounded-pill px-2">Alerts</span>
+                  </div>
+                  <small class="text-muted d-block">
+                    Items that have reached or fallen below minimum threshold quantities.
+                  </small>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right sitemap-chevron ms-3"></i>
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Tools & Management Section -->
+      <div class="col-12 col-lg-6" id="section-tools">
+        <div class="card h-100">
+          <div class="card-header d-flex align-items-center justify-content-between">
+            <h2 class="card-title mb-0">
+              <i class="bi bi-tools me-2 text-success"></i>
+              Tools & Management
+            </h2>
+            <span class="badge bg-light text-dark border">3 Pages</span>
+          </div>
+
+          <div class="card-body p-0">
+
+            <a href="activity.html" class="sitemap-touch-item">
+              <div class="d-flex align-items-center">
+                <span class="sitemap-item-icon">
+                  <i class="bi bi-clock-history"></i>
+                </span>
+                <div>
+                  <div class="fw-bold text-dark">Activity / History</div>
+                  <small class="text-muted d-block">
+                    Audit log of inventory additions, stock checkouts, adjustments, and movements.
+                  </small>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right sitemap-chevron ms-3"></i>
+            </a>
+
+            <a href="reports.html" class="sitemap-touch-item">
+              <div class="d-flex align-items-center">
+                <span class="sitemap-item-icon">
+                  <i class="bi bi-bar-chart"></i>
+                </span>
+                <div>
+                  <div class="fw-bold text-dark">Reports</div>
+                  <small class="text-muted d-block">
+                    Turnover metrics, inventory valuation, stock status breakdowns, and charts.
+                  </small>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right sitemap-chevron ms-3"></i>
+            </a>
+
+            <a href="import-export.html" class="sitemap-touch-item">
+              <div class="d-flex align-items-center">
+                <span class="sitemap-item-icon">
+                  <i class="bi bi-arrow-left-right"></i>
+                </span>
+                <div>
+                  <div class="fw-bold text-dark">Import / Export</div>
+                  <small class="text-muted d-block">
+                    Batch data migration and backups using CSV spreadsheets and JSON files.
+                  </small>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right sitemap-chevron ms-3"></i>
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Resources & Documentation Section -->
+      <div class="col-12 col-lg-6" id="section-resources">
+        <div class="card h-100">
+          <div class="card-header d-flex align-items-center justify-content-between">
+            <h2 class="card-title mb-0">
+              <i class="bi bi-three-dots me-2 text-success"></i>
+              Resources & Documentation
+            </h2>
+            <span class="badge bg-light text-dark border">2 Pages</span>
+          </div>
+
+          <div class="card-body p-0">
+
+            <a href="about.html" class="sitemap-touch-item">
+              <div class="d-flex align-items-center">
+                <span class="sitemap-item-icon">
+                  <i class="bi bi-question-circle"></i>
+                </span>
+                <div>
+                  <div class="fw-bold text-dark">Help / About</div>
+                  <small class="text-muted d-block">
+                    User guide, barcode scanning instructions, and developer information.
+                  </small>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right sitemap-chevron ms-3"></i>
+            </a>
+
+            <a href="sitemap.html" class="sitemap-touch-item current-page">
+              <div class="d-flex align-items-center">
+                <span class="sitemap-item-icon">
+                  <i class="bi bi-diagram-3-fill"></i>
+                </span>
+                <div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="fw-bold text-dark">Site Map</span>
+                    <span class="badge bg-dark text-white rounded-pill px-2">Current</span>
+                  </div>
+                  <small class="text-muted d-block">
+                    Comprehensive index and touch navigation directory for all application pages.
+                  </small>
+                </div>
+              </div>
+              <i class="bi bi-check2 text-success fs-5 ms-3"></i>
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- END: Page Content -->
+
+
+    <!-- START: Footer Component -->
+    <footer class="footer-custom">
+
+      <div class="footer-left">
+
+        <span class="footer-logo">
+          <i class="bi bi-box-seam-fill"></i>
+          Inventory Tracker
+        </span>
+
+        <span class="footer-separator">|</span>
+
+        <span class="footer-copy">
+          &copy; 2026 Inventory Tracker &bull; Template by
+          <a href="https://sparkadminpro.gumroad.com/" target="_blank">
+            Spark Admin
+          </a>
+          &bull; Distributed by
+          <a href="https://www.themewagon.com/" target="_blank">
+            ThemeWagon
+          </a>
+        </span>
+
+      </div>
+
+      <div class="footer-right">
+        <ul class="footer-links">
+          <li>
+            <a href="index.html" class="footer-link">Dashboard</a>
+          </li>
+          <li>
+            <a href="about.html" class="footer-link">Help / About</a>
+          </li>
+          <li>
+            <a href="sitemap.html" class="footer-link">Site Map</a>
+          </li>
+        </ul>
+      </div>
+
+    </footer>
+    <!-- END: Footer Component -->
+
+  </div>
+  <!-- ==========================================
+         END: Main Content Area
+         ========================================== -->
+
+
+  <!-- Local Third-Party Libraries Script dependencies -->
+  <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/libs/flatpickr/flatpickr.min.js"></script>
+
+  <!-- Local dashboard / shared site interactions controller -->
+  <script src="assets/js/dashboard.js"></script>
+
+</body>
+
+</html>

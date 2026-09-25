@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>About - Inventory Tracker</title>
+  <title>Locations - Inventory Tracker</title>
 
-  <meta name="description" content="About the Inventory Tracker web application.">
+  <meta name="description" content="Manage storage locations, warehouses, aisles, shelves, and bins.">
   <meta name="author" content="Jay C. Parangalan">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/favicon.ico">
 
-  <!-- Local Third-Party Libraries -->
+  <!-- Local Third-Party Libraries (100% Offline Compatible) -->
   <link rel="stylesheet" href="assets/libs/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/libs/bootstrap-icons/bootstrap-icons.css">
   <link rel="stylesheet" href="assets/libs/apexcharts/apexcharts.css">
@@ -21,6 +21,7 @@
 
   <!-- Main Design System & Custom Stylesheet -->
   <link rel="stylesheet" href="assets/css/main.css">
+
   <!-- Collapsible sidebar navigation (uses existing Spark Admin submenu styles) -->
   <style>
     .sidebar-menu-link[type="button"] {
@@ -104,21 +105,21 @@
       <div class="sidebar-menu-section">
         <ul class="sidebar-menu-list">
           <li class="sidebar-menu-item">
-            <button class="sidebar-menu-link" type="button"
+            <button class="sidebar-menu-link active" type="button"
               data-bs-toggle="collapse" data-bs-target="#organize-menu"
-              aria-expanded="false" aria-controls="organize-menu">
+              aria-expanded="true" aria-controls="organize-menu">
               <i class="bi bi-folder2-open"></i>
               <span>Organize</span>
               <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
             </button>
 
-            <div class="collapse" id="organize-menu" data-bs-parent="#sidebar">
+            <div class="collapse show" id="organize-menu" data-bs-parent="#sidebar">
               <ul class="sidebar-submenu">
                 <li>
                   <a href="categories.html" class="sidebar-submenu-link">Categories</a>
                 </li>
                 <li>
-                  <a href="locations.html" class="sidebar-submenu-link">Locations</a>
+                  <a href="locations.html" class="sidebar-submenu-link active" aria-current="page">Locations</a>
                 </li>
                 <li>
                   <a href="low-stock.html" class="sidebar-submenu-link">Low Stock</a>
@@ -162,18 +163,18 @@
       <div class="sidebar-menu-section">
         <ul class="sidebar-menu-list">
           <li class="sidebar-menu-item">
-            <button class="sidebar-menu-link active" type="button"
+            <button class="sidebar-menu-link" type="button"
               data-bs-toggle="collapse" data-bs-target="#more-menu"
-              aria-expanded="true" aria-controls="more-menu">
+              aria-expanded="false" aria-controls="more-menu">
               <i class="bi bi-three-dots"></i>
               <span>More</span>
               <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
             </button>
 
-            <div class="collapse show" id="more-menu" data-bs-parent="#sidebar">
+            <div class="collapse" id="more-menu" data-bs-parent="#sidebar">
               <ul class="sidebar-submenu">
                 <li>
-                  <a href="about.html" class="sidebar-submenu-link active" aria-current="page">Help / About</a>
+                  <a href="about.html" class="sidebar-submenu-link">Help / About</a>
                 </li>
                 <li>
                   <a href="sitemap.html" class="sidebar-submenu-link">Site Map</a>
@@ -364,109 +365,196 @@
     <!-- END: Top Navbar Component -->
 
 
-    <!-- Page Header -->
+    <!-- ==========================================
+         START: Page Header
+         ========================================== -->
     <div class="page-header">
+
       <div>
-        <h1 class="page-title">Help / About</h1>
+        <h1 class="page-title">Locations</h1>
+
         <p class="page-subtitle">
-          Information about Inventory Tracker and its development.
+          Manage storage areas, warehouses, rooms, shelves, and bin assignments.
         </p>
       </div>
+
+      <div class="d-flex flex-wrap gap-2">
+        <button type="button" class="btn btn-outline-secondary rounded-pill px-3">
+          <i class="bi bi-qr-code me-1"></i> Print Location Tags
+        </button>
+        <button type="button" class="btn btn-dark-custom">
+          <span class="icon-wrap"><i class="bi bi-plus-lg"></i></span>
+          <span>New Location</span>
+        </button>
+      </div>
+
     </div>
+    <!-- END: Page Header -->
 
 
     <!-- ==========================================
          START: Page Content
          ========================================== -->
-    <div class="row g-4">
 
-      <!-- About Inventory Tracker -->
-      <div class="col-lg-7">
-        <div class="card h-100">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="bi bi-box-seam me-2"></i>
-              About Inventory Tracker
-            </h2>
+    <!-- Small Business Storage Capacity Overview Card -->
+    <div class="card mb-4">
+      <div class="card-body p-4">
+        <div class="row g-3 align-items-center">
+          <div class="col-12 col-md-4">
+            <span class="stat-label">Total Storage Occupancy</span>
+            <div class="stat-value fs-2 text-dark">75%</div>
+            <small class="text-muted">Combined utilization across all 3 sites</small>
           </div>
-
-          <div class="card-body">
-            <p>
-              Inventory Tracker is a browser-based inventory management
-              application designed to make it easy to add, organize, monitor,
-              and review inventory.
-            </p>
-
-            <p class="mb-0">
-              The application is being developed as a project for
-              CIT-82: Introduction to Web Development at Fresno City College.
-            </p>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- Developer Information -->
-      <div class="col-lg-5">
-        <div class="card h-100">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="bi bi-person-badge me-2"></i>
-              Developer Information
-            </h2>
-          </div>
-
-          <div class="card-body">
-            <p class="mb-2">
-              <strong>Created by</strong><br>
-              Jay C. Parangalan
-            </p>
-
-            <p class="mb-2">
-              <strong>Course</strong><br>
-              CIT-82: Introduction to Web Development
-            </p>
-
-            <p class="mb-0">
-              <strong>College and Term</strong><br>
-              Fresno City College, Fall 2026
-            </p>
+          <div class="col-12 col-md-8">
+            <div class="d-flex justify-content-between small text-muted mb-1">
+              <span>Retail &amp; Annex Storage Capacity</span>
+              <span class="fw-bold text-dark">75% Overall Capacity</span>
+            </div>
+            <div class="progress" style="height: 12px;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar bg-forest-medium" style="width: 75%;"></div>
+            </div>
+            <div class="d-flex justify-content-between small text-muted mt-2">
+              <span><i class="bi bi-geo-alt-fill text-success me-1"></i> 3 Sites (2 Stores &bull; 1 Storage Annex)</span>
+              <span><i class="bi bi-boxes me-1"></i> 1,284 Total Units in Stock</span>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-
-      <!-- Help Placeholder -->
+    <!-- Location Capacity & Stock Distribution Chart -->
+    <div class="row g-4 mb-4">
       <div class="col-12">
         <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="bi bi-question-circle me-2"></i>
-              Using Inventory Tracker
-            </h2>
+          <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <div>
+              <h2 class="card-title mb-0">
+                <i class="bi bi-bar-chart-fill me-2 text-success"></i>
+                Location Capacity vs. Stored Units
+              </h2>
+              <span class="card-subtitle text-muted small">Cross-site storage utilization and available shelf headroom</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="d-flex align-items-center gap-1 small">
+                <span class="legend-dot" style="background-color: #072F1F;"></span>
+                <span>Current Stock</span>
+              </div>
+              <div class="d-flex align-items-center gap-1 small">
+                <span class="legend-dot" style="background-color: #B4F105;"></span>
+                <span>Max Capacity</span>
+              </div>
+            </div>
           </div>
+          <div class="card-body p-4">
+            <div id="location-capacity-chart" style="min-height: 240px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-          <div class="card-body">
-            <!-- TODO:
-                 Add detailed user instructions after the application's
-                 workflows and features have been finalized.
+    <!-- Small Business 3 Locations Grid (2 Stores + 1 Storage Annex) -->
+    <div class="row g-4">
 
-                 Planned topics may include:
-                 - Scanning UPC barcodes
-                 - Adding inventory manually
-                 - Managing item quantities
-                 - Categories and locations
-                 - Low-stock monitoring
-                 - Activity and reports
-                 - Importing and exporting inventory
-                 - Local browser storage and backups
-            -->
+      <!-- Location 1: Downtown Retail Store -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <div class="card-body p-4 d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="sitemap-item-icon m-0 bg-forest-light text-lime">
+                  <i class="bi bi-shop"></i>
+                </div>
+                <span class="badge bg-success bg-opacity-10 text-success border">Store #1 &bull; Active</span>
+              </div>
+              <h5 class="fw-bold text-dark mb-1">Downtown Retail Store</h5>
+              <p class="text-muted small mb-3">
+                Main storefront sales floor, front display fixtures, and register backroom.
+              </p>
+              <div class="d-flex justify-content-between small text-muted mb-1">
+                <span>Space Utilization</span>
+                <span class="fw-bold text-dark">78% Full</span>
+              </div>
+              <div class="progress mb-3" style="height: 6px;">
+                <div class="progress-bar bg-forest-medium" style="width: 78%;"></div>
+              </div>
+              <div class="d-flex justify-content-between small text-muted">
+                <span>16 Display &amp; Shelf Units</span>
+                <span><strong>520</strong> items stored</span>
+              </div>
+            </div>
+            <div class="d-flex gap-2 pt-3 border-top mt-3">
+              <a href="inventory.html" class="btn btn-outline-dark btn-sm rounded-pill flex-grow-1">View Store Stock</a>
+              <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" title="Edit Location"><i class="bi bi-pencil"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-            <div class="alert alert-light border mb-0" role="alert">
-              <i class="bi bi-tools me-2"></i>
-              <strong>Documentation coming soon.</strong>
-              Detailed instructions will be added as Inventory Tracker's
-              features are finalized.
+      <!-- Location 2: Westside Branch Store -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <div class="card-body p-4 d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="sitemap-item-icon m-0 bg-forest-light text-lime">
+                  <i class="bi bi-shop-window"></i>
+                </div>
+                <span class="badge bg-success bg-opacity-10 text-success border">Store #2 &bull; Active</span>
+              </div>
+              <h5 class="fw-bold text-dark mb-1">Westside Branch Store</h5>
+              <p class="text-muted small mb-3">
+                Secondary retail boutique, merchandise aisles, and staff stockroom.
+              </p>
+              <div class="d-flex justify-content-between small text-muted mb-1">
+                <span>Space Utilization</span>
+                <span class="fw-bold text-dark">64% Full</span>
+              </div>
+              <div class="progress mb-3" style="height: 6px;">
+                <div class="progress-bar bg-success" style="width: 64%;"></div>
+              </div>
+              <div class="d-flex justify-content-between small text-muted">
+                <span>12 Display &amp; Shelf Units</span>
+                <span><strong>340</strong> items stored</span>
+              </div>
+            </div>
+            <div class="d-flex gap-2 pt-3 border-top mt-3">
+              <a href="inventory.html" class="btn btn-outline-dark btn-sm rounded-pill flex-grow-1">View Store Stock</a>
+              <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" title="Edit Location"><i class="bi bi-pencil"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location 3: Central Storage & Supply Annex -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <div class="card-body p-4 d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="sitemap-item-icon m-0 bg-forest-light text-lime">
+                  <i class="bi bi-boxes"></i>
+                </div>
+                <span class="badge bg-warning bg-opacity-10 text-dark border">Storage Annex &bull; 82% Full</span>
+              </div>
+              <h5 class="fw-bold text-dark mb-1">Central Storage Annex</h5>
+              <p class="text-muted small mb-3">
+                Central reserve depot for receiving vendor deliveries and bulk replenishment.
+              </p>
+              <div class="d-flex justify-content-between small text-muted mb-1">
+                <span>Space Utilization</span>
+                <span class="fw-bold text-dark">82% Full</span>
+              </div>
+              <div class="progress mb-3" style="height: 6px;">
+                <div class="progress-bar bg-warning" style="width: 82%;"></div>
+              </div>
+              <div class="d-flex justify-content-between small text-muted">
+                <span>20 Pallet &amp; Bulk Racks</span>
+                <span><strong>424</strong> items stored</span>
+              </div>
+            </div>
+            <div class="d-flex gap-2 pt-3 border-top mt-3">
+              <a href="inventory.html" class="btn btn-outline-dark btn-sm rounded-pill flex-grow-1">View Annex Stock</a>
+              <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" title="Edit Location"><i class="bi bi-pencil"></i></button>
             </div>
           </div>
         </div>
@@ -476,24 +564,29 @@
     <!-- END: Page Content -->
 
 
-    <!-- ==========================================
-         START: Footer
-         ========================================== -->
+    <!-- START: Footer Component -->
     <footer class="footer-custom">
+
       <div class="footer-left">
+
         <span class="footer-logo">
-          <i class="bi bi-box-seam-fill"></i> Inventory Tracker
+          <i class="bi bi-box-seam-fill"></i>
+          Inventory Tracker
         </span>
 
         <span class="footer-separator">|</span>
 
         <span class="footer-copy">
-          &copy; 2026 Inventory Tracker •
-          Template by
-          <a href="https://sparkadminpro.gumroad.com/" target="_blank">Spark Admin</a>
-          • Distributed by
-          <a href="https://www.themewagon.com/" target="_blank">ThemeWagon</a>
+          &copy; 2026 Inventory Tracker &bull; Template by
+          <a href="https://sparkadminpro.gumroad.com/" target="_blank">
+            Spark Admin
+          </a>
+          &bull; Distributed by
+          <a href="https://www.themewagon.com/" target="_blank">
+            ThemeWagon
+          </a>
         </span>
+
       </div>
 
       <div class="footer-right">
@@ -509,23 +602,22 @@
           </li>
         </ul>
       </div>
+
     </footer>
-    <!-- END: Footer -->
+    <!-- END: Footer Component -->
 
   </div>
-  <!-- END: Main Content Area -->
+  <!-- ==========================================
+         END: Main Content Area
+         ========================================== -->
 
 
-  <!-- Bootstrap -->
+  <!-- Local Third-Party Libraries Script dependencies -->
   <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- ApexCharts -->
   <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
-
-  <!-- Flatpickr -->
   <script src="assets/libs/flatpickr/flatpickr.min.js"></script>
 
-  <!-- Dashboard / Shared Template Behavior -->
+  <!-- Local dashboard / shared site interactions controller -->
   <script src="assets/js/dashboard.js"></script>
 
 </body>

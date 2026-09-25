@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>About - Inventory Tracker</title>
+  <title>Add Item - Inventory Tracker</title>
 
-  <meta name="description" content="About the Inventory Tracker web application.">
+  <meta name="description" content="Add new inventory items, set stock thresholds, categories, and locations.">
   <meta name="author" content="Jay C. Parangalan">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/favicon.ico">
 
-  <!-- Local Third-Party Libraries -->
+  <!-- Local Third-Party Libraries (100% Offline Compatible) -->
   <link rel="stylesheet" href="assets/libs/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/libs/bootstrap-icons/bootstrap-icons.css">
   <link rel="stylesheet" href="assets/libs/apexcharts/apexcharts.css">
@@ -21,6 +21,7 @@
 
   <!-- Main Design System & Custom Stylesheet -->
   <link rel="stylesheet" href="assets/css/main.css">
+
   <!-- Collapsible sidebar navigation (uses existing Spark Admin submenu styles) -->
   <style>
     .sidebar-menu-link[type="button"] {
@@ -75,15 +76,15 @@
       <div class="sidebar-menu-section">
         <ul class="sidebar-menu-list">
           <li class="sidebar-menu-item">
-            <button class="sidebar-menu-link" type="button"
+            <button class="sidebar-menu-link active" type="button"
               data-bs-toggle="collapse" data-bs-target="#inventory-menu"
-              aria-expanded="false" aria-controls="inventory-menu">
+              aria-expanded="true" aria-controls="inventory-menu">
               <i class="bi bi-boxes"></i>
               <span>Inventory</span>
               <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
             </button>
 
-            <div class="collapse" id="inventory-menu" data-bs-parent="#sidebar">
+            <div class="collapse show" id="inventory-menu" data-bs-parent="#sidebar">
               <ul class="sidebar-submenu">
                 <li>
                   <a href="inventory.html" class="sidebar-submenu-link">All Inventory</a>
@@ -92,7 +93,7 @@
                   <a href="scan.html" class="sidebar-submenu-link">Scan Item</a>
                 </li>
                 <li>
-                  <a href="add-item.html" class="sidebar-submenu-link">Add Item</a>
+                  <a href="add-item.html" class="sidebar-submenu-link active" aria-current="page">Add Item</a>
                 </li>
               </ul>
             </div>
@@ -162,18 +163,18 @@
       <div class="sidebar-menu-section">
         <ul class="sidebar-menu-list">
           <li class="sidebar-menu-item">
-            <button class="sidebar-menu-link active" type="button"
+            <button class="sidebar-menu-link" type="button"
               data-bs-toggle="collapse" data-bs-target="#more-menu"
-              aria-expanded="true" aria-controls="more-menu">
+              aria-expanded="false" aria-controls="more-menu">
               <i class="bi bi-three-dots"></i>
               <span>More</span>
               <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
             </button>
 
-            <div class="collapse show" id="more-menu" data-bs-parent="#sidebar">
+            <div class="collapse" id="more-menu" data-bs-parent="#sidebar">
               <ul class="sidebar-submenu">
                 <li>
-                  <a href="about.html" class="sidebar-submenu-link active" aria-current="page">Help / About</a>
+                  <a href="about.html" class="sidebar-submenu-link">Help / About</a>
                 </li>
                 <li>
                   <a href="sitemap.html" class="sidebar-submenu-link">Site Map</a>
@@ -364,15 +365,27 @@
     <!-- END: Top Navbar Component -->
 
 
-    <!-- Page Header -->
+    <!-- ==========================================
+         START: Page Header
+         ========================================== -->
     <div class="page-header">
+
       <div>
-        <h1 class="page-title">Help / About</h1>
+        <h1 class="page-title">Add Item</h1>
+
         <p class="page-subtitle">
-          Information about Inventory Tracker and its development.
+          Create a new inventory record with SKU, name, quantity, category, and storage location.
         </p>
       </div>
+
+      <div>
+        <a href="inventory.html" class="btn btn-outline-secondary rounded-pill px-3">
+          <i class="bi bi-arrow-left me-1"></i> Back to Inventory
+        </a>
+      </div>
+
     </div>
+    <!-- END: Page Header -->
 
 
     <!-- ==========================================
@@ -380,95 +393,243 @@
          ========================================== -->
     <div class="row g-4">
 
-      <!-- About Inventory Tracker -->
-      <div class="col-lg-7">
-        <div class="card h-100">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="bi bi-box-seam me-2"></i>
-              About Inventory Tracker
-            </h2>
-          </div>
-
-          <div class="card-body">
-            <p>
-              Inventory Tracker is a browser-based inventory management
-              application designed to make it easy to add, organize, monitor,
-              and review inventory.
-            </p>
-
-            <p class="mb-0">
-              The application is being developed as a project for
-              CIT-82: Introduction to Web Development at Fresno City College.
-            </p>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- Developer Information -->
-      <div class="col-lg-5">
-        <div class="card h-100">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="bi bi-person-badge me-2"></i>
-              Developer Information
-            </h2>
-          </div>
-
-          <div class="card-body">
-            <p class="mb-2">
-              <strong>Created by</strong><br>
-              Jay C. Parangalan
-            </p>
-
-            <p class="mb-2">
-              <strong>Course</strong><br>
-              CIT-82: Introduction to Web Development
-            </p>
-
-            <p class="mb-0">
-              <strong>College and Term</strong><br>
-              Fresno City College, Fall 2026
-            </p>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- Help Placeholder -->
-      <div class="col-12">
+      <!-- Left Column: Comprehensive Add Item Form -->
+      <div class="col-12 col-lg-8">
         <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="bi bi-question-circle me-2"></i>
-              Using Inventory Tracker
+          <div class="card-header d-flex align-items-center justify-content-between">
+            <h2 class="card-title mb-0">
+              <i class="bi bi-plus-square me-2 text-success"></i>
+              Item Details & Specifications
             </h2>
+            <span class="badge bg-light text-muted border">New Record</span>
           </div>
 
-          <div class="card-body">
-            <!-- TODO:
-                 Add detailed user instructions after the application's
-                 workflows and features have been finalized.
+          <div class="card-body p-4">
+            <form action="#" method="POST" onsubmit="return false;">
 
-                 Planned topics may include:
-                 - Scanning UPC barcodes
-                 - Adding inventory manually
-                 - Managing item quantities
-                 - Categories and locations
-                 - Low-stock monitoring
-                 - Activity and reports
-                 - Importing and exporting inventory
-                 - Local browser storage and backups
-            -->
+              <!-- Section 1: General Product Information -->
+              <h5 class="fw-bold text-dark mb-3">1. Product Identification</h5>
+              <div class="row g-3 mb-4">
+                <div class="col-12">
+                  <label class="form-label-custom" for="item-name">
+                    Product / Item Name <span class="text-danger">*</span>
+                  </label>
+                  <input type="text" class="form-control-custom" id="item-name"
+                    placeholder="e.g. Ergonomic Wireless Bluetooth Mouse" value="Ergonomic Wireless Mouse">
+                </div>
 
-            <div class="alert alert-light border mb-0" role="alert">
-              <i class="bi bi-tools me-2"></i>
-              <strong>Documentation coming soon.</strong>
-              Detailed instructions will be added as Inventory Tracker's
-              features are finalized.
+                <div class="col-12 col-md-6">
+                  <label class="form-label-custom" for="item-sku">
+                    SKU / Item Code <span class="text-danger">*</span>
+                  </label>
+                  <input type="text" class="form-control-custom" id="item-sku"
+                    placeholder="e.g. ELEC-9021" value="ELEC-9021">
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <label class="form-label-custom" for="item-barcode">
+                    Barcode / UPC
+                  </label>
+                  <div class="input-group">
+                    <input type="text" class="form-control-custom" id="item-barcode"
+                      placeholder="e.g. 084920192831" value="084920192831">
+                    <a href="scan.html" class="btn btn-outline-secondary" type="button" title="Scan with camera">
+                      <i class="bi bi-upc-scan"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label-custom" for="item-description">
+                    Description & Notes
+                  </label>
+                  <textarea class="form-control-custom" id="item-description" rows="3"
+                    placeholder="Optional item details, dimensions, compatibility, or storage requirements...">Rechargeable multi-device wireless optical mouse with USB-C dongle.</textarea>
+                </div>
+              </div>
+
+              <hr class="my-4 opacity-10">
+
+              <!-- Section 2: Organization & Location -->
+              <h5 class="fw-bold text-dark mb-3">2. Category & Storage Location</h5>
+              <div class="row g-3 mb-4">
+                <div class="col-12 col-md-6">
+                  <label class="form-label-custom" for="item-category">
+                    Category <span class="text-danger">*</span>
+                  </label>
+                  <select class="form-select form-control-custom" id="item-category">
+                    <option value="">Select a category...</option>
+                    <option value="electronics" selected>Electronics</option>
+                    <option value="food">Food &amp; Beverage</option>
+                    <option value="packaging">Packaging &amp; Shipping</option>
+                    <option value="office">Office Supplies</option>
+                    <option value="hardware">Hardware &amp; Tools</option>
+                  </select>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <label class="form-label-custom" for="item-location">
+                    Storage Location <span class="text-danger">*</span>
+                  </label>
+                  <select class="form-select form-control-custom" id="item-location">
+                    <option value="">Select location...</option>
+                    <option value="loc-1" selected>Downtown Retail Store (Store #1)</option>
+                    <option value="loc-2">Westside Branch Store (Store #2)</option>
+                    <option value="loc-3">Central Storage Annex (Storage)</option>
+                  </select>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <label class="form-label-custom" for="item-sublocation">
+                    Specific Shelf / Bin / Rack
+                  </label>
+                  <input type="text" class="form-control-custom" id="item-sublocation"
+                    placeholder="e.g. Shelf B, Bin 3" value="Shelf B">
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <label class="form-label-custom" for="item-vendor">
+                    Vendor / Supplier
+                  </label>
+                  <input type="text" class="form-control-custom" id="item-vendor"
+                    placeholder="e.g. Logitech Direct Supplies" value="TechLogix Wholesale">
+                </div>
+              </div>
+
+              <hr class="my-4 opacity-10">
+
+              <!-- Section 3: Stock Counts & Valuation -->
+              <h5 class="fw-bold text-dark mb-3">3. Stock Levels & Valuation</h5>
+              <div class="row g-3 mb-4">
+                <div class="col-6 col-md-3">
+                  <label class="form-label-custom" for="item-qty">
+                    Initial Qty <span class="text-danger">*</span>
+                  </label>
+                  <input type="number" class="form-control-custom" id="item-qty" min="0" value="45">
+                </div>
+
+                <div class="col-6 col-md-3">
+                  <label class="form-label-custom" for="item-min">
+                    Reorder Alert Qty <span class="text-danger">*</span>
+                  </label>
+                  <input type="number" class="form-control-custom" id="item-min" min="0" value="10">
+                </div>
+
+                <div class="col-6 col-md-3">
+                  <label class="form-label-custom" for="item-cost">
+                    Unit Cost ($)
+                  </label>
+                  <input type="number" class="form-control-custom" id="item-cost" min="0" step="0.01" value="18.50">
+                </div>
+
+                <div class="col-6 col-md-3">
+                  <label class="form-label-custom" for="item-price">
+                    Selling Price ($)
+                  </label>
+                  <input type="number" class="form-control-custom" id="item-price" min="0" step="0.01" value="34.99">
+                </div>
+              </div>
+
+              <!-- Form Submit Controls -->
+              <div class="d-flex flex-wrap align-items-center gap-3 pt-3 border-top">
+                <button type="submit" class="btn btn-dark-custom">
+                  <span class="icon-wrap"><i class="bi bi-check2"></i></span>
+                  <span>Save Inventory Item</span>
+                </button>
+
+                <button type="button" class="btn btn-outline-dark rounded-pill px-4">
+                  <i class="bi bi-plus-lg me-1"></i> Save &amp; Add Another
+                </button>
+
+                <a href="inventory.html" class="btn btn-link text-muted ms-auto">
+                  Cancel
+                </a>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Helper & Tips Sidebar -->
+      <div class="col-12 col-lg-4">
+        <div class="d-flex flex-column gap-4">
+
+          <!-- Card 1: Scanning Quick Link -->
+          <div class="card bg-forest-light border-0">
+            <div class="card-body p-4 text-center">
+              <div class="sitemap-item-icon mx-auto mb-3 bg-white" style="width: 52px; height: 52px;">
+                <i class="bi bi-upc-scan fs-4 text-success"></i>
+              </div>
+              <h5 class="fw-bold text-dark">Have a Barcode?</h5>
+              <p class="text-muted small mb-3">
+                Use your device camera or handheld scanner to read existing product labels without typing.
+              </p>
+              <a href="scan.html" class="btn btn-dark-custom mx-auto justify-content-center">
+                <span>Launch Camera Scanner</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
             </div>
           </div>
+
+          <!-- Card 2: Guidelines Card -->
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title mb-0 fs-6">
+                <i class="bi bi-lightbulb me-2 text-warning"></i>
+                Best Practices
+              </h5>
+            </div>
+            <div class="card-body p-3">
+              <ul class="list-unstyled mb-0 d-flex flex-column gap-3 small">
+                <li class="d-flex gap-2">
+                  <i class="bi bi-check-circle-fill text-success mt-1"></i>
+                  <div>
+                    <strong>SKU Format:</strong> Use uppercase letters followed by digits (e.g. <code>CAT-1001</code>).
+                  </div>
+                </li>
+                <li class="d-flex gap-2">
+                  <i class="bi bi-check-circle-fill text-success mt-1"></i>
+                  <div>
+                    <strong>Reorder Threshold:</strong> Set this equal to 1-2 weeks of typical item turnover.
+                  </div>
+                </li>
+                <li class="d-flex gap-2">
+                  <i class="bi bi-check-circle-fill text-success mt-1"></i>
+                  <div>
+                    <strong>Locations:</strong> Group items by accessibility so fast-moving goods are in lower bins.
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 3: Recently Added Preview -->
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title mb-0 fs-6">
+                <i class="bi bi-clock-history me-2 text-primary"></i>
+                Recently Added
+              </h5>
+            </div>
+            <div class="list-group list-group-flush small">
+              <div class="list-group-item d-flex justify-content-between align-items-center py-2 px-3">
+                <div>
+                  <div class="fw-bold">Heavy-Duty Shipping Tape</div>
+                  <span class="text-muted">SKU: PACK-1104 &bull; 88 units</span>
+                </div>
+                <span class="badge bg-light text-dark">Yesterday</span>
+              </div>
+              <div class="list-group-item d-flex justify-content-between align-items-center py-2 px-3">
+                <div>
+                  <div class="fw-bold">Arabica Coffee Beans 2lb</div>
+                  <span class="text-muted">SKU: FOOD-3310 &bull; 6 units</span>
+                </div>
+                <span class="badge bg-light text-dark">Yesterday</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -476,24 +637,29 @@
     <!-- END: Page Content -->
 
 
-    <!-- ==========================================
-         START: Footer
-         ========================================== -->
+    <!-- START: Footer Component -->
     <footer class="footer-custom">
+
       <div class="footer-left">
+
         <span class="footer-logo">
-          <i class="bi bi-box-seam-fill"></i> Inventory Tracker
+          <i class="bi bi-box-seam-fill"></i>
+          Inventory Tracker
         </span>
 
         <span class="footer-separator">|</span>
 
         <span class="footer-copy">
-          &copy; 2026 Inventory Tracker •
-          Template by
-          <a href="https://sparkadminpro.gumroad.com/" target="_blank">Spark Admin</a>
-          • Distributed by
-          <a href="https://www.themewagon.com/" target="_blank">ThemeWagon</a>
+          &copy; 2026 Inventory Tracker &bull; Template by
+          <a href="https://sparkadminpro.gumroad.com/" target="_blank">
+            Spark Admin
+          </a>
+          &bull; Distributed by
+          <a href="https://www.themewagon.com/" target="_blank">
+            ThemeWagon
+          </a>
         </span>
+
       </div>
 
       <div class="footer-right">
@@ -509,23 +675,22 @@
           </li>
         </ul>
       </div>
+
     </footer>
-    <!-- END: Footer -->
+    <!-- END: Footer Component -->
 
   </div>
-  <!-- END: Main Content Area -->
+  <!-- ==========================================
+         END: Main Content Area
+         ========================================== -->
 
 
-  <!-- Bootstrap -->
+  <!-- Local Third-Party Libraries Script dependencies -->
   <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- ApexCharts -->
   <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
-
-  <!-- Flatpickr -->
   <script src="assets/libs/flatpickr/flatpickr.min.js"></script>
 
-  <!-- Dashboard / Shared Template Behavior -->
+  <!-- Local dashboard / shared site interactions controller -->
   <script src="assets/js/dashboard.js"></script>
 
 </body>

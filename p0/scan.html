@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>About - Inventory Tracker</title>
+  <title>Scan Item - Inventory Tracker</title>
 
-  <meta name="description" content="About the Inventory Tracker web application.">
+  <meta name="description" content="Scan barcode or QR code to quickly look up or adjust inventory.">
   <meta name="author" content="Jay C. Parangalan">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/favicon.ico">
 
-  <!-- Local Third-Party Libraries -->
+  <!-- Local Third-Party Libraries (100% Offline Compatible) -->
   <link rel="stylesheet" href="assets/libs/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/libs/bootstrap-icons/bootstrap-icons.css">
   <link rel="stylesheet" href="assets/libs/apexcharts/apexcharts.css">
@@ -21,6 +21,7 @@
 
   <!-- Main Design System & Custom Stylesheet -->
   <link rel="stylesheet" href="assets/css/main.css">
+
   <!-- Collapsible sidebar navigation (uses existing Spark Admin submenu styles) -->
   <style>
     .sidebar-menu-link[type="button"] {
@@ -75,21 +76,21 @@
       <div class="sidebar-menu-section">
         <ul class="sidebar-menu-list">
           <li class="sidebar-menu-item">
-            <button class="sidebar-menu-link" type="button"
+            <button class="sidebar-menu-link active" type="button"
               data-bs-toggle="collapse" data-bs-target="#inventory-menu"
-              aria-expanded="false" aria-controls="inventory-menu">
+              aria-expanded="true" aria-controls="inventory-menu">
               <i class="bi bi-boxes"></i>
               <span>Inventory</span>
               <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
             </button>
 
-            <div class="collapse" id="inventory-menu" data-bs-parent="#sidebar">
+            <div class="collapse show" id="inventory-menu" data-bs-parent="#sidebar">
               <ul class="sidebar-submenu">
                 <li>
                   <a href="inventory.html" class="sidebar-submenu-link">All Inventory</a>
                 </li>
                 <li>
-                  <a href="scan.html" class="sidebar-submenu-link">Scan Item</a>
+                  <a href="scan.html" class="sidebar-submenu-link active" aria-current="page">Scan Item</a>
                 </li>
                 <li>
                   <a href="add-item.html" class="sidebar-submenu-link">Add Item</a>
@@ -162,18 +163,18 @@
       <div class="sidebar-menu-section">
         <ul class="sidebar-menu-list">
           <li class="sidebar-menu-item">
-            <button class="sidebar-menu-link active" type="button"
+            <button class="sidebar-menu-link" type="button"
               data-bs-toggle="collapse" data-bs-target="#more-menu"
-              aria-expanded="true" aria-controls="more-menu">
+              aria-expanded="false" aria-controls="more-menu">
               <i class="bi bi-three-dots"></i>
               <span>More</span>
               <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
             </button>
 
-            <div class="collapse show" id="more-menu" data-bs-parent="#sidebar">
+            <div class="collapse" id="more-menu" data-bs-parent="#sidebar">
               <ul class="sidebar-submenu">
                 <li>
-                  <a href="about.html" class="sidebar-submenu-link active" aria-current="page">Help / About</a>
+                  <a href="about.html" class="sidebar-submenu-link">Help / About</a>
                 </li>
                 <li>
                   <a href="sitemap.html" class="sidebar-submenu-link">Site Map</a>
@@ -364,15 +365,21 @@
     <!-- END: Top Navbar Component -->
 
 
-    <!-- Page Header -->
+    <!-- ==========================================
+         START: Page Header
+         ========================================== -->
     <div class="page-header">
+
       <div>
-        <h1 class="page-title">Help / About</h1>
+        <h1 class="page-title">Scan Item</h1>
+
         <p class="page-subtitle">
-          Information about Inventory Tracker and its development.
+          Scan a barcode or QR code using your device camera or dedicated scanner.
         </p>
       </div>
+
     </div>
+    <!-- END: Page Header -->
 
 
     <!-- ==========================================
@@ -380,120 +387,54 @@
          ========================================== -->
     <div class="row g-4">
 
-      <!-- About Inventory Tracker -->
-      <div class="col-lg-7">
-        <div class="card h-100">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="bi bi-box-seam me-2"></i>
-              About Inventory Tracker
-            </h2>
-          </div>
-
-          <div class="card-body">
-            <p>
-              Inventory Tracker is a browser-based inventory management
-              application designed to make it easy to add, organize, monitor,
-              and review inventory.
-            </p>
-
-            <p class="mb-0">
-              The application is being developed as a project for
-              CIT-82: Introduction to Web Development at Fresno City College.
-            </p>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- Developer Information -->
-      <div class="col-lg-5">
-        <div class="card h-100">
-          <div class="card-header">
-            <h2 class="card-title">
-              <i class="bi bi-person-badge me-2"></i>
-              Developer Information
-            </h2>
-          </div>
-
-          <div class="card-body">
-            <p class="mb-2">
-              <strong>Created by</strong><br>
-              Jay C. Parangalan
-            </p>
-
-            <p class="mb-2">
-              <strong>Course</strong><br>
-              CIT-82: Introduction to Web Development
-            </p>
-
-            <p class="mb-0">
-              <strong>College and Term</strong><br>
-              Fresno City College, Fall 2026
-            </p>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- Help Placeholder -->
       <div class="col-12">
+
         <div class="card">
+
           <div class="card-header">
             <h2 class="card-title">
-              <i class="bi bi-question-circle me-2"></i>
-              Using Inventory Tracker
+              <i class="bi bi-upc-scan me-2"></i>
+              Scan Item
             </h2>
           </div>
 
           <div class="card-body">
-            <!-- TODO:
-                 Add detailed user instructions after the application's
-                 workflows and features have been finalized.
-
-                 Planned topics may include:
-                 - Scanning UPC barcodes
-                 - Adding inventory manually
-                 - Managing item quantities
-                 - Categories and locations
-                 - Low-stock monitoring
-                 - Activity and reports
-                 - Importing and exporting inventory
-                 - Local browser storage and backups
-            -->
-
-            <div class="alert alert-light border mb-0" role="alert">
-              <i class="bi bi-tools me-2"></i>
-              <strong>Documentation coming soon.</strong>
-              Detailed instructions will be added as Inventory Tracker's
-              features are finalized.
-            </div>
+            <p class="mb-0 text-muted">
+              Placeholder for mobile camera scanner and quick barcode lookup tool.
+            </p>
           </div>
+
         </div>
+
       </div>
 
     </div>
     <!-- END: Page Content -->
 
 
-    <!-- ==========================================
-         START: Footer
-         ========================================== -->
+    <!-- START: Footer Component -->
     <footer class="footer-custom">
+
       <div class="footer-left">
+
         <span class="footer-logo">
-          <i class="bi bi-box-seam-fill"></i> Inventory Tracker
+          <i class="bi bi-box-seam-fill"></i>
+          Inventory Tracker
         </span>
 
         <span class="footer-separator">|</span>
 
         <span class="footer-copy">
-          &copy; 2026 Inventory Tracker •
-          Template by
-          <a href="https://sparkadminpro.gumroad.com/" target="_blank">Spark Admin</a>
-          • Distributed by
-          <a href="https://www.themewagon.com/" target="_blank">ThemeWagon</a>
+          &copy; 2026 Inventory Tracker &bull; Template by
+          <a href="https://sparkadminpro.gumroad.com/" target="_blank">
+            Spark Admin
+          </a>
+          &bull; Distributed by
+          <a href="https://www.themewagon.com/" target="_blank">
+            ThemeWagon
+          </a>
         </span>
+
       </div>
 
       <div class="footer-right">
@@ -509,23 +450,22 @@
           </li>
         </ul>
       </div>
+
     </footer>
-    <!-- END: Footer -->
+    <!-- END: Footer Component -->
 
   </div>
-  <!-- END: Main Content Area -->
+  <!-- ==========================================
+         END: Main Content Area
+         ========================================== -->
 
 
-  <!-- Bootstrap -->
+  <!-- Local Third-Party Libraries Script dependencies -->
   <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- ApexCharts -->
   <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
-
-  <!-- Flatpickr -->
   <script src="assets/libs/flatpickr/flatpickr.min.js"></script>
 
-  <!-- Dashboard / Shared Template Behavior -->
+  <!-- Local dashboard / shared site interactions controller -->
   <script src="assets/js/dashboard.js"></script>
 
 </body>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Activity / History - Inventory Tracker</title>
+
+  <meta name="description" content="View inventory transaction history, audit trails, and stock adjustment logs.">
+  <meta name="author" content="Jay C. Parangalan">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.ico">
+
+  <!-- Local Third-Party Libraries (100% Offline Compatible) -->
+  <link rel="stylesheet" href="assets/libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/libs/bootstrap-icons/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/libs/apexcharts/apexcharts.css">
+  <link rel="stylesheet" href="assets/libs/flatpickr/flatpickr.min.css">
+
+  <!-- Main Design System & Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- Collapsible sidebar navigation (uses existing Spark Admin submenu styles) -->
+  <style>
+    .sidebar-menu-link[type="button"] {
+      width: 100%;
+      border: 0;
+      text-align: left;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .sidebar-menu-link[type="button"]:not(:hover):not(.active) {
+      background: transparent;
+    }
+
+    .sidebar-submenu-link.active {
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================================
+         START: Sidebar Component
+         Highly polished, dark-green sticky navigation
+         ========================================== -->
+  <div class="sidebar-wrapper" id="sidebar">
+
+    <!-- Brand Logo / Identity -->
+    <a href="index.html" class="sidebar-brand">
+      <i class="bi bi-box-seam-fill"></i>
+      <span>Inventory Tracker</span>
+    </a>
+
+    <!-- Navigation Menu -->
+    <nav class="flex-grow-1 overflow-y-auto" aria-label="Main navigation">
+
+      <!-- Dashboard: direct link -->
+      <div class="sidebar-menu-section">
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <a href="index.html" class="sidebar-menu-link" title="Dashboard">
+              <i class="bi bi-grid-fill"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Inventory: expandable group -->
+      <div class="sidebar-menu-section">
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <button class="sidebar-menu-link" type="button"
+              data-bs-toggle="collapse" data-bs-target="#inventory-menu"
+              aria-expanded="false" aria-controls="inventory-menu">
+              <i class="bi bi-boxes"></i>
+              <span>Inventory</span>
+              <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
+            </button>
+
+            <div class="collapse" id="inventory-menu" data-bs-parent="#sidebar">
+              <ul class="sidebar-submenu">
+                <li>
+                  <a href="inventory.html" class="sidebar-submenu-link">All Inventory</a>
+                </li>
+                <li>
+                  <a href="scan.html" class="sidebar-submenu-link">Scan Item</a>
+                </li>
+                <li>
+                  <a href="add-item.html" class="sidebar-submenu-link">Add Item</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Organize: expandable group -->
+      <div class="sidebar-menu-section">
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <button class="sidebar-menu-link" type="button"
+              data-bs-toggle="collapse" data-bs-target="#organize-menu"
+              aria-expanded="false" aria-controls="organize-menu">
+              <i class="bi bi-folder2-open"></i>
+              <span>Organize</span>
+              <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
+            </button>
+
+            <div class="collapse" id="organize-menu" data-bs-parent="#sidebar">
+              <ul class="sidebar-submenu">
+                <li>
+                  <a href="categories.html" class="sidebar-submenu-link">Categories</a>
+                </li>
+                <li>
+                  <a href="locations.html" class="sidebar-submenu-link">Locations</a>
+                </li>
+                <li>
+                  <a href="low-stock.html" class="sidebar-submenu-link">Low Stock</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Tools: expandable group -->
+      <div class="sidebar-menu-section">
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <button class="sidebar-menu-link active" type="button"
+              data-bs-toggle="collapse" data-bs-target="#tools-menu"
+              aria-expanded="true" aria-controls="tools-menu">
+              <i class="bi bi-tools"></i>
+              <span>Tools</span>
+              <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
+            </button>
+
+            <div class="collapse show" id="tools-menu" data-bs-parent="#sidebar">
+              <ul class="sidebar-submenu">
+                <li>
+                  <a href="activity.html" class="sidebar-submenu-link active" aria-current="page">Activity / History</a>
+                </li>
+                <li>
+                  <a href="reports.html" class="sidebar-submenu-link">Reports</a>
+                </li>
+                <li>
+                  <a href="import-export.html" class="sidebar-submenu-link">Import / Export</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- More: expandable group -->
+      <div class="sidebar-menu-section">
+        <ul class="sidebar-menu-list">
+          <li class="sidebar-menu-item">
+            <button class="sidebar-menu-link" type="button"
+              data-bs-toggle="collapse" data-bs-target="#more-menu"
+              aria-expanded="false" aria-controls="more-menu">
+              <i class="bi bi-three-dots"></i>
+              <span>More</span>
+              <i class="bi bi-chevron-down dropdown-caret" aria-hidden="true"></i>
+            </button>
+
+            <div class="collapse" id="more-menu" data-bs-parent="#sidebar">
+              <ul class="sidebar-submenu">
+                <li>
+                  <a href="about.html" class="sidebar-submenu-link">Help / About</a>
+                </li>
+                <li>
+                  <a href="sitemap.html" class="sidebar-submenu-link">Site Map</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+  </div>
+  <!-- ==========================================
+         END: Sidebar Component
+         ========================================== -->
+
+
+  <!-- ==========================================
+         START: Main Content Area
+         ========================================== -->
+  <div class="main-wrapper">
+
+    <!-- START: Top Navbar Component -->
+    <header class="navbar-custom">
+
+      <div class="navbar-left">
+
+        <!-- Desktop sidebar toggle (visible on large screens only) -->
+        <button class="btn-desktop-toggle d-none d-xl-flex align-items-center justify-content-center me-3"
+          id="desktop-sidebar-toggle" aria-label="Minimize Sidebar">
+          <i class="bi bi-chevron-bar-left"></i>
+        </button>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle-btn me-2" id="sidebar-toggle" aria-label="Toggle Navigation">
+          <i class="bi bi-list"></i>
+        </button>
+
+        <!-- Quick Actions Dropdown -->
+        <div class="dropdown ms-2">
+          <button class="btn-quick-action dropdown-toggle" type="button"
+            data-bs-toggle="dropdown" aria-expanded="false"
+            id="quick-actions-dropdown">
+            <i class="bi bi-plus-lg"></i>
+            <span>Quick Actions</span>
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-quick-action"
+            aria-labelledby="quick-actions-dropdown">
+            <li class="dropdown-header">Inventory Shortcuts</li>
+            <li>
+              <a class="dropdown-item" href="scan.html">
+                <i class="bi bi-upc-scan"></i> Scan Item
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="add-item.html">
+                <i class="bi bi-plus-square"></i> Add Item
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="import-export.html">
+                <i class="bi bi-arrow-left-right"></i> Import Inventory
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Mid navbar: search pill -->
+      <div class="navbar-search-wrapper">
+        <input type="text" class="navbar-search-input"
+          placeholder="Search inventory..." id="main-search">
+
+        <button class="navbar-search-btn" aria-label="Search">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+
+      <!-- Right actions -->
+      <div class="navbar-actions">
+
+        <!-- Fullscreen -->
+        <button class="navbar-action-btn me-1"
+          aria-label="Toggle Fullscreen"
+          id="btn-fullscreen">
+          <i class="bi bi-arrows-fullscreen"></i>
+        </button>
+
+        <!-- Inventory Notifications -->
+        <div class="dropdown">
+          <button class="navbar-action-btn dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            id="btn-notifications"
+            data-bs-auto-close="outside"
+            aria-label="Inventory notifications">
+            <i class="bi bi-bell"></i>
+            <span class="navbar-action-badge"></span>
+          </button>
+
+          <div class="dropdown-menu dropdown-menu-end dropdown-menu-notification p-0"
+            aria-labelledby="btn-notifications">
+
+            <div class="notification-header">
+              <h6 class="notification-title">Inventory Alerts</h6>
+            </div>
+
+            <div class="notification-list">
+
+              <a href="low-stock.html" class="notification-item">
+                <div class="notification-icon bg-warning text-dark">
+                  <i class="bi bi-exclamation-triangle-fill"></i>
+                </div>
+
+                <div class="notification-content">
+                  <p class="notification-text">
+                    Some inventory items are <strong>running low</strong>.
+                  </p>
+                  <span class="notification-time">
+                    View low-stock items
+                  </span>
+                </div>
+
+                <span class="notification-unread-dot"></span>
+              </a>
+
+              <a href="activity.html" class="notification-item">
+                <div class="notification-icon bg-success text-white">
+                  <i class="bi bi-clock-history"></i>
+                </div>
+
+                <div class="notification-content">
+                  <p class="notification-text">
+                    Review your latest <strong>inventory activity</strong>.
+                  </p>
+                  <span class="notification-time">
+                    View activity history
+                  </span>
+                </div>
+              </a>
+
+            </div>
+
+            <a href="activity.html" class="notification-footer">
+              View Activity / History
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Resources -->
+        <div class="dropdown ms-2">
+          <button class="navbar-profile-btn dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+
+            <i class="bi bi-question-circle fs-5"></i>
+
+            <span class="navbar-profile-name d-none d-md-inline">
+              Resources
+            </span>
+
+            <i class="bi bi-chevron-down navbar-profile-caret"></i>
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-profile">
+            <li>
+              <a class="dropdown-item" href="about.html">
+                <i class="bi bi-question-circle"></i> Help / About
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="sitemap.html">
+                <i class="bi bi-diagram-3"></i> Site Map
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </header>
+    <!-- END: Top Navbar Component -->
+
+
+    <!-- ==========================================
+         START: Page Header
+         ========================================== -->
+    <div class="page-header">
+
+      <div>
+        <h1 class="page-title">Activity / History</h1>
+
+        <p class="page-subtitle">
+          Audit trail of inventory movements, adjustments, stock intakes, and checkouts.
+        </p>
+      </div>
+
+      <div class="d-flex flex-wrap gap-2">
+        <button type="button" class="btn btn-outline-secondary rounded-pill px-3">
+          <i class="bi bi-calendar3 me-1"></i> Date Range
+        </button>
+        <button type="button" class="btn btn-dark-custom">
+          <span class="icon-wrap"><i class="bi bi-download"></i></span>
+          <span>Export Audit Log</span>
+        </button>
+      </div>
+
+    </div>
+    <!-- END: Page Header -->
+
+
+    <!-- ==========================================
+         START: Page Content
+         ========================================== -->
+
+    <!-- Activity Overview KPI Cards -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="card p-3">
+          <span class="stat-label">Total Transactions</span>
+          <div class="stat-value fs-3">196</div>
+          <small class="text-muted"><i class="bi bi-clock-history me-1"></i> Last 30 days</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card p-3">
+          <span class="stat-label">Stock Inflow</span>
+          <div class="stat-value fs-3 text-success">+342</div>
+          <small class="text-success"><i class="bi bi-arrow-down-left me-1"></i> Units received</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card p-3">
+          <span class="stat-label">Stock Outflow</span>
+          <div class="stat-value fs-3 text-danger">-146</div>
+          <small class="text-danger"><i class="bi bi-arrow-up-right me-1"></i> Units used/shipped</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card p-3">
+          <span class="stat-label">Net Movement</span>
+          <div class="stat-value fs-3 text-main">+196</div>
+          <small class="text-success"><i class="bi bi-graph-up-arrow me-1"></i> Growth balance</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stock Movement Trend Chart Card -->
+    <div class="card mb-4">
+      <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
+        <div>
+          <h2 class="card-title mb-0">
+            <i class="bi bi-graph-up text-success me-2"></i>
+            Stock Movement Velocity (Last 7 Days)
+          </h2>
+          <span class="card-subtitle text-muted small">Daily inbound received units vs. outbound shipments &amp; retail sales</span>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div class="d-flex align-items-center gap-1 small">
+            <span class="legend-dot" style="background-color: #B4F105;"></span>
+            <span>Inbound (Received)</span>
+          </div>
+          <div class="d-flex align-items-center gap-1 small">
+            <span class="legend-dot" style="background-color: #072F1F;"></span>
+            <span>Outbound (Used / Sold)</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body p-4">
+        <div id="activity-trend-chart" style="min-height: 230px;"></div>
+      </div>
+    </div>
+
+    <!-- Activity Audit Log Table Card -->
+    <div class="table-card-custom">
+
+      <div class="table-header-control">
+        <div class="table-search-box">
+          <i class="bi bi-search table-search-icon"></i>
+          <input type="text" class="table-search-input" placeholder="Search activity by item, user, SKU...">
+        </div>
+
+        <div class="table-filter-group flex-wrap">
+          <select class="form-select form-select-sm" style="width: auto;">
+            <option selected>All Event Types</option>
+            <option>Stock Received / Added</option>
+            <option>Stock Deducted</option>
+            <option>Item Relocated</option>
+            <option>New Item Created</option>
+          </select>
+
+          <select class="form-select form-select-sm" style="width: auto;">
+            <option selected>All Users</option>
+            <option>Jay C. Parangalan</option>
+            <option>System Import</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table-custom">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Action</th>
+              <th>Item / Description</th>
+              <th class="text-center">Adjustment</th>
+              <th class="text-center">Ending Balance</th>
+              <th>User</th>
+              <th class="text-end">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-muted small">Today, 02:15 PM</td>
+              <td><span class="badge-table success">Stock Added</span></td>
+              <td>
+                <div class="table-user-cell">
+                  <div class="sitemap-item-icon m-0" style="width:32px; height:32px; min-width:32px; font-size:0.85rem;">
+                    <i class="bi bi-plus-lg text-success"></i>
+                  </div>
+                  <div>
+                    <div class="table-user-name">Coca-Cola 12 oz Pack</div>
+                    <div class="table-user-sub">SKU: FOOD-1011 &bull; Receiving dock</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center fw-bold text-success">+4</td>
+              <td class="text-center fw-bold text-dark">48</td>
+              <td><span class="badge bg-light text-dark border">Jay P.</span></td>
+              <td class="text-end">
+                <button class="table-btn-action" title="View Transaction Log"><i class="bi bi-info-circle"></i></button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="text-muted small">Today, 11:30 AM</td>
+              <td><span class="badge-table failed">Stock Deducted</span></td>
+              <td>
+                <div class="table-user-cell">
+                  <div class="sitemap-item-icon m-0" style="width:32px; height:32px; min-width:32px; font-size:0.85rem;">
+                    <i class="bi bi-dash-lg text-danger"></i>
+                  </div>
+                  <div>
+                    <div class="table-user-name">Ergonomic Wireless Mouse</div>
+                    <div class="table-user-sub">SKU: ELEC-9021 &bull; Order pickup</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center fw-bold text-danger">-2</td>
+              <td class="text-center fw-bold text-dark">43</td>
+              <td><span class="badge bg-light text-dark border">Jay P.</span></td>
+              <td class="text-end">
+                <button class="table-btn-action" title="View Transaction Log"><i class="bi bi-info-circle"></i></button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="text-muted small">Today, 09:15 AM</td>
+              <td><span class="badge-table success">New Item</span></td>
+              <td>
+                <div class="table-user-cell">
+                  <div class="sitemap-item-icon m-0" style="width:32px; height:32px; min-width:32px; font-size:0.85rem;">
+                    <i class="bi bi-plus-circle text-primary"></i>
+                  </div>
+                  <div>
+                    <div class="table-user-name">Thermal Barcode Labels 500ct</div>
+                    <div class="table-user-sub">SKU: OFFC-7712 &bull; Initial inventory catalog entry</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center fw-bold text-success">+14</td>
+              <td class="text-center fw-bold text-dark">14</td>
+              <td><span class="badge bg-light text-dark border">Jay P.</span></td>
+              <td class="text-end">
+                <button class="table-btn-action" title="View Transaction Log"><i class="bi bi-info-circle"></i></button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="text-muted small">Yesterday, 04:45 PM</td>
+              <td><span class="badge-table pending">Relocated</span></td>
+              <td>
+                <div class="table-user-cell">
+                  <div class="sitemap-item-icon m-0" style="width:32px; height:32px; min-width:32px; font-size:0.85rem;">
+                    <i class="bi bi-arrow-left-right text-dark"></i>
+                  </div>
+                  <div>
+                    <div class="table-user-name">Multipurpose Copy Paper</div>
+                    <div class="table-user-sub">Moved from Aisle 1 to Office Closet</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center text-muted">&mdash;</td>
+              <td class="text-center fw-bold text-dark">20</td>
+              <td><span class="badge bg-light text-dark border">Jay P.</span></td>
+              <td class="text-end">
+                <button class="table-btn-action" title="View Transaction Log"><i class="bi bi-info-circle"></i></button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="text-muted small">Yesterday, 01:20 PM</td>
+              <td><span class="badge-table success">Stock Added</span></td>
+              <td>
+                <div class="table-user-cell">
+                  <div class="sitemap-item-icon m-0" style="width:32px; height:32px; min-width:32px; font-size:0.85rem;">
+                    <i class="bi bi-plus-lg text-success"></i>
+                  </div>
+                  <div>
+                    <div class="table-user-name">Heavy-Duty Shipping Tape (6pk)</div>
+                    <div class="table-user-sub">SKU: PACK-1104 &bull; Restock intake</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center fw-bold text-success">+12</td>
+              <td class="text-center fw-bold text-dark">88</td>
+              <td><span class="badge bg-light text-dark border">Jay P.</span></td>
+              <td class="text-end">
+                <button class="table-btn-action" title="View Transaction Log"><i class="bi bi-info-circle"></i></button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="text-muted small">Sep 22, 2026 10:00 AM</td>
+              <td><span class="badge-table success">Bulk Import</span></td>
+              <td>
+                <div class="table-user-cell">
+                  <div class="sitemap-item-icon m-0" style="width:32px; height:32px; min-width:32px; font-size:0.85rem;">
+                    <i class="bi bi-file-earmark-spreadsheet text-success"></i>
+                  </div>
+                  <div>
+                    <div class="table-user-name">Initial Catalog Spreadsheet</div>
+                    <div class="table-user-sub">Imported 150 SKU records via CSV</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center fw-bold text-success">+150</td>
+              <td class="text-center fw-bold text-dark">1,120</td>
+              <td><span class="badge bg-dark text-white">System</span></td>
+              <td class="text-end">
+                <button class="table-btn-action" title="View Transaction Log"><i class="bi bi-info-circle"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-footer-control">
+        <div class="table-pagination-info">
+          Showing <strong>6 recent logs</strong> of <strong>196 total records</strong>
+        </div>
+
+        <nav aria-label="Activity pagination">
+          <ul class="pagination pagination-sm mb-0">
+            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item active"><a class="page-link bg-dark border-dark" href="#">1</a></li>
+            <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+            <li class="page-item"><a class="page-link text-dark" href="#">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+    <!-- END: Page Content -->
+
+
+    <!-- START: Footer Component -->
+    <footer class="footer-custom">
+
+      <div class="footer-left">
+
+        <span class="footer-logo">
+          <i class="bi bi-box-seam-fill"></i>
+          Inventory Tracker
+        </span>
+
+        <span class="footer-separator">|</span>
+
+        <span class="footer-copy">
+          &copy; 2026 Inventory Tracker &bull; Template by
+          <a href="https://sparkadminpro.gumroad.com/" target="_blank">
+            Spark Admin
+          </a>
+          &bull; Distributed by
+          <a href="https://www.themewagon.com/" target="_blank">
+            ThemeWagon
+          </a>
+        </span>
+
+      </div>
+
+      <div class="footer-right">
+        <ul class="footer-links">
+          <li>
+            <a href="index.html" class="footer-link">Dashboard</a>
+          </li>
+          <li>
+            <a href="about.html" class="footer-link">Help / About</a>
+          </li>
+          <li>
+            <a href="sitemap.html" class="footer-link">Site Map</a>
+          </li>
+        </ul>
+      </div>
+
+    </footer>
+    <!-- END: Footer Component -->
+
+  </div>
+  <!-- ==========================================
+         END: Main Content Area
+         ========================================== -->
+
+
+  <!-- Local Third-Party Libraries Script dependencies -->
+  <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/libs/flatpickr/flatpickr.min.js"></script>
+
+  <!-- Local dashboard / shared site interactions controller -->
+  <script src="assets/js/dashboard.js"></script>
+
+</body>
+
+</html>
