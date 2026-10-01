@@ -39,7 +39,7 @@
 
 ## Phase 4: Asset Cleanup & Final Review
 
-- [ ] Delete unreferenced template images from `assets/images/` (`spark-admin-free.png`, `user_*.jpg`).
+- [x] Delete unreferenced template images from `assets/images/` (`avatar.png`, `spark-admin-free.png`, `user_*.jpg`).
 - [ ] Clean up unused template CSS and JavaScript in `assets/css/main.css` and `assets/js/dashboard.js`.
 - [ ] Check every page for dead links, placeholder text, and title consistency.
 - [ ] Perform cross-browser and mobile responsive audit.
