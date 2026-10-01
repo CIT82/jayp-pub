@@ -1,37 +1,45 @@
 # Inventory Tracker TODO
 
-## Architecture (The 12 Pages + Site Map)
+## Phase 1: Site Architecture & Page Foundations (Complete)
 
-1. - [x] Create the **Dashboard / Home** page with an inventory overview and summary information.
-2. - [ ] Create the main inventory pages: **All Inventory**, **Scan Item**, **Add Item**, and **Item Details**.
-3. - [x] Create the organization pages: **Categories**, **Locations**, and **Low Stock**.
-4. - [x] Create the management pages: **Activity / History**, **Reports**, and **Import / Export**.
-5. - [ ] Create the **Help / About** page with instructions for barcode scanning, inventory management, and local data storage.
-6. - [x] Create a **Site Map** page showing the hierarchy of the site and linking to all pages.
+- [x] Create the **Dashboard / Home** page with an inventory overview and summary statistics (`index.html`).
+- [x] Create foundational inventory pages: **All Inventory** (`inventory.html`) and **Add Item** (`add-item.html`).
+- [x] Create organization pages: **Categories** (`categories.html`), **Locations** (`locations.html`), and **Low Stock** (`low-stock.html`).
+- [x] Create management pages: **Activity / History** (`activity.html`), **Reports** (`reports.html`), and **Import / Export** (`import-export.html`).
+- [x] Create **Help / About** page shell (`about.html`) with application overview and developer info.
+- [x] Create **Site Map** page (`sitemap.html`) showing site hierarchy and linking all sections.
+- [x] Implement responsive sidebar/navbar navigation with **Inventory**, **Organize**, **Tools**, and **More** menus.
+- [x] Establish unified theme, Bootstrap styles, KPI cards, and responsive tables.
+- [x] Remove unneeded template pages and replace branding across all views.
 
-## Content Replacement
+## Phase 2: Barcode Scanning & Item Lookup (Active Milestone)
+> *Goal: Enable live camera or manual UPC barcode scanning, query a static/mock catalog, and display item specifications without saving to storage.*
 
-7. - [x] Replace the template's original branding, titles, headings, and placeholder text with Inventory Tracker content.
-8. - [ ] Replace template images and graphics with appropriate product, barcode, inventory, and storage-related images.
-9. - [x] Replace sample/template data with realistic inventory examples and useful item information.
-10. - [x] Add appropriate headings, descriptions, labels, and supporting text to each page.
-11. - [x] Add Dashboard content summarizing inventory totals, categories, locations, and low-stock items.
+- [ ] **Scan Interface & Viewfinder (`scan.html`)**
+  - [ ] Implement mobile-friendly camera viewfinder container with targeting overlay and scan guides.
+  - [ ] Add manual UPC entry form as a fallback / desktop testing control.
+  - [ ] Add camera control buttons (camera flip/switch, torch/flashlight toggle if supported).
+- [ ] **Barcode Lookup Engine**
+  - [ ] Create mock UPC lookup dataset matching current demo catalog items.
+  - [ ] Implement lookup function by barcode/UPC string.
+  - [ ] Handle unrecognized barcode state with friendly alert and link to Add Item with prefilled UPC.
+- [ ] **Read-Only Item Details Presentation**
+  - [ ] Display scanned item summary card (name, SKU, category, location, price, current stock badge) upon match.
+  - [ ] Make **Item Details** viewable contextually (modal or dedicated preview card) from inventory lists and scan hits.
+- [ ] **User Documentation (`about.html`)**
+  - [ ] Write instructions for camera barcode scanning, lighting tips, and supported code formats.
 
-## Design & Bootstrap
+## Phase 3: Data Storage & Inventory Mutations (Upcoming)
 
-12. - [x] Replace the template navigation with a responsive Bootstrap navbar using **Inventory**, **Organize**, **Tools**, and **More** dropdown menus.
-13. - [x] Place **All Inventory**, **Scan Item**, and **Add Item** under Inventory; **Categories**, **Locations**, and **Low Stock** under Organize; **Activity / History**, **Reports**, and **Import / Export** under Tools; and **Help / About** and **Site Map** under More.
-14. - [ ] Make the Inventory Tracker brand link to the Dashboard and make **Item Details** accessible contextually by selecting an inventory item rather than placing it in the navbar.
-15. - [x] Choose and apply a consistent Bootstrap color scheme, typography, spacing, and overall visual style.
-16. - [x] Create consistent Bootstrap button and form styles for actions such as **Scan Barcode**, **Add Item**, **Save**, **Edit**, and **Delete**.
-17. - [x] Use Bootstrap cards, badges, alerts, and other appropriate components for inventory statistics, categories, and stock-status information.
-18. - [x] Make inventory tables and forms responsive and usable on both desktop and mobile displays.
-19. - [ ] Design the **Scan Item** interface specifically for convenient mobile camera and barcode use.
+- [ ] Implement browser local storage (`localStorage` / IndexedDB) for catalog items.
+- [ ] Enable Add Item form submissions to write to local storage.
+- [ ] Implement stock adjustments and count checkouts from Scan results and Inventory tables.
+- [ ] Wire up Import / Export to download and load real JSON/CSV catalogs.
+- [ ] Write Help / About documentation for local browser storage and backup procedures.
 
-## Cleanup
+## Phase 4: Asset Cleanup & Final Review
 
-20. - [x] Remove template sections, components, and navigation elements that do not serve an Inventory Tracker purpose.
-21. - [ ] Remove unused template images, icons, placeholder assets, and sample content.
-22. - [ ] Remove unused CSS and JavaScript associated with deleted template components.
-23. - [ ] Check every page for leftover template branding, lorem ipsum, dead links, missing images, and inconsistent filenames or titles.
-24. - [ ] Perform a final desktop and mobile review to verify that navigation, page layouts, links, and responsive behavior work correctly.
+- [ ] Delete unreferenced template images from `assets/images/` (`spark-admin-free.png`, `user_*.jpg`).
+- [ ] Clean up unused template CSS and JavaScript in `assets/css/main.css` and `assets/js/dashboard.js`.
+- [ ] Check every page for dead links, placeholder text, and title consistency.
+- [ ] Perform cross-browser and mobile responsive audit.
