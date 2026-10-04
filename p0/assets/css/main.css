@@ -3183,5 +3183,106 @@ span.flatpickr-weekday {
     color: var(--brand-lime) !important;
 }
 
+/* ---------------------------------------------------------------------
+   25. Camera Barcode Scanner Component (.scanner-overlay)
+   --------------------------------------------------------------------- */
+.scanner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background-color: rgba(5, 28, 18, 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    color: #FFFFFF;
+}
 
+.scanner-overlay.d-none {
+    display: none !important;
+}
 
+.scanner-header {
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.scanner-viewport-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 4 / 3;
+    max-height: 60vh;
+    background-color: #000000;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scanner-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.scanner-target-guide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 55%;
+    border: 2px dashed rgba(180, 241, 5, 0.85);
+    border-radius: 14px;
+    box-shadow: 0 0 0 9999px rgba(5, 28, 18, 0.45);
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.scanner-laser {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #B4F105, #B4F105, transparent);
+    box-shadow: 0 0 10px #B4F105;
+    animation: scannerLaserScan 2s infinite ease-in-out;
+}
+
+@keyframes scannerLaserScan {
+    0% {
+        top: 8%;
+        opacity: 0.7;
+    }
+    50% {
+        top: 92%;
+        opacity: 1;
+    }
+    100% {
+        top: 8%;
+        opacity: 0.7;
+    }
+}
+
+.scanner-footer {
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+    z-index: 10;
+}

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -697,6 +697,40 @@
   <!-- Local dashboard / shared site interactions controller -->
   <script src="assets/js/dashboard.js"></script>
 
+  <!-- URL Search Parameters pre-fill handler for seamless Scan-to-Add flow -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const params = new URLSearchParams(window.location.search);
+      const barcode = params.get('barcode');
+      const name = params.get('name');
+      const brand = params.get('brand');
+      const qty = params.get('qty');
+      const unit = params.get('unit');
+
+      if (barcode) {
+        const el = document.getElementById('item-barcode');
+        if (el) el.value = barcode;
+      }
+      if (name) {
+        const el = document.getElementById('item-name');
+        if (el) el.value = name;
+      }
+      if (brand) {
+        const el = document.getElementById('item-vendor');
+        if (el) el.value = brand;
+      }
+      if (qty) {
+        const el = document.getElementById('item-qty');
+        if (el) el.value = qty;
+      }
+      if (unit && unit !== 'units') {
+        const descEl = document.getElementById('item-description');
+        if (descEl && !descEl.value.includes(unit)) {
+          descEl.value = (descEl.value ? descEl.value + ' ' : '') + `Package Unit: ${unit}.`;
+        }
+      }
+    });
+  </script>
 </body>
 
 </html>

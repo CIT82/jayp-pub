@@ -466,11 +466,48 @@
                  - Local browser storage and backups
             -->
 
-            <div class="alert alert-light border mb-0" role="alert">
-              <i class="bi bi-tools me-2"></i>
-              <strong>Documentation coming soon.</strong>
-              Detailed instructions will be added as Inventory Tracker's
-              features are finalized.
+            <h5 class="fw-bold text-dark mb-3">
+              <i class="bi bi-upc-scan me-2 text-success"></i>
+              UPC Barcode Scanning Guide
+            </h5>
+            <p>
+              Inventory Tracker supports live client-side barcode scanning using your mobile phone or tablet camera, as well as desktop manual entry.
+            </p>
+
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <div class="p-3 border rounded-3 bg-light h-100">
+                  <h6 class="fw-bold text-dark mb-2">
+                    <i class="bi bi-camera me-1 text-success"></i> How to Scan with Your Camera
+                  </h6>
+                  <ol class="small mb-0 ps-3">
+                    <li class="mb-1">Navigate to <strong>Inventory &gt; Scan Item</strong>.</li>
+                    <li class="mb-1">Tap <strong>Scan Barcode</strong> to open the camera viewfinder.</li>
+                    <li class="mb-1">Hold your camera 4&ndash;8 inches away from the product label.</li>
+                    <li class="mb-1">Position the barcode horizontally within the targeting guide.</li>
+                    <li>The scanner automatically captures the code, halts the camera, and triggers catalog lookup.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="p-3 border rounded-3 bg-light h-100">
+                  <h6 class="fw-bold text-dark mb-2">
+                    <i class="bi bi-shield-check me-1 text-primary"></i> Supported 1D Formats &amp; Database
+                  </h6>
+                  <ul class="small mb-0 ps-3">
+                    <li class="mb-1"><strong>UPC-A &amp; UPC-E:</strong> Standard North American retail products.</li>
+                    <li class="mb-1"><strong>EAN-13:</strong> International standard grocery &amp; retail barcodes.</li>
+                    <li class="mb-1"><strong>Code 128:</strong> High-density distribution &amp; package barcodes.</li>
+                    <li><strong>Permanent Local Database:</strong> Successfully retrieved items are saved permanently in browser <code>localStorage</code> for instant offline lookups and catalog building.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert alert-light border mb-0 small" role="alert">
+              <i class="bi bi-info-circle text-primary me-2"></i>
+              <strong>Free Catalog Providers:</strong> Online product lookup queries <strong>UPCitemdb</strong> and <strong>Open Food Facts</strong> public trial APIs. If a product is not found, you can easily enter or customize item details manually.
             </div>
           </div>
         </div>

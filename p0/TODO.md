@@ -15,19 +15,19 @@
 ## Phase 2: Barcode Scanning & Item Lookup (Active Milestone)
 > *Goal: Enable live camera or manual UPC barcode scanning, query a static/mock catalog, and display item specifications without saving to storage.*
 
-- [ ] **Scan Interface & Viewfinder (`scan.html`)**
-  - [ ] Implement mobile-friendly camera viewfinder container with targeting overlay and scan guides.
-  - [ ] Add manual UPC entry form as a fallback / desktop testing control.
-  - [ ] Add camera control buttons (camera flip/switch, torch/flashlight toggle if supported).
-- [ ] **Barcode Lookup Engine**
-  - [ ] Create mock UPC lookup dataset matching current demo catalog items.
-  - [ ] Implement lookup function by barcode/UPC string.
-  - [ ] Handle unrecognized barcode state with friendly alert and link to Add Item with prefilled UPC.
-- [ ] **Read-Only Item Details Presentation**
-  - [ ] Display scanned item summary card (name, SKU, category, location, price, current stock badge) upon match.
-  - [ ] Make **Item Details** viewable contextually (modal or dedicated preview card) from inventory lists and scan hits.
-- [ ] **User Documentation (`about.html`)**
-  - [ ] Write instructions for camera barcode scanning, lighting tips, and supported code formats.
+- [x] **Scan Interface & Viewfinder (`scan.html`)**
+  - [x] Implement mobile-friendly camera viewfinder container with targeting overlay and scan guides.
+  - [x] Add manual UPC entry form as a fallback / desktop testing control.
+  - [x] Add camera control buttons (cancel/close, mobile playsinline support).
+- [x] **Barcode Lookup Engine**
+  - [x] Implement multi-provider lookup cascade with UPCitemdb and Open Food Facts APIs.
+  - [x] Implement permanent client-side product database (`product-database-v1`) in `localStorage`.
+  - [x] Handle unrecognized barcode state with friendly alert and link to Add Item with prefilled UPC.
+- [x] **Read-Only Item Details Presentation**
+  - [x] Display scanned item review card (brand, product name, quantity, unit, source badge).
+  - [x] Provide direct handoff link to Add Item with prefilled URL query parameters.
+- [x] **User Documentation (`about.html`)**
+  - [x] Write instructions for camera barcode scanning, lighting tips, and supported code formats.
 
 ## Phase 3: Data Storage & Inventory Mutations (Upcoming)
 
