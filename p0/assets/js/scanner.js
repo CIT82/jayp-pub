@@ -433,6 +433,10 @@
             }
           }
         );
+
+        if (!this.isScanning) {
+          this.stop();
+        }
       } catch (err) {
         this.stop();
         if (typeof this.onError === 'function') {
