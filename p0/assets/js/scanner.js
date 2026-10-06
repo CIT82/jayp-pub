@@ -413,26 +413,57 @@
       this.isScanning = true;
 
       try {
-        // Stream from device camera (rear/environment preferred on mobile)
-        this.controls = await this.reader.decodeFromVideoDevice(
-          undefined,
-          this.videoElement,
-          (result, error, controls) => {
-            if (!this.isScanning) return;
-
-            if (result) {
-              const raw = result.getText();
-              const normalized = normalizeBarcode(raw);
-
-              // Stop scanner immediately on match
-              this.stop();
-
-              if (typeof this.onScan === 'function') {
-                this.onScan(normalized);
-              }
+        // Enumerate video input devices to prefer rear/environment camera on mobile
+        let selectedDeviceId;
+        try {
+          const videoInputDevices = await ZXingBrowserLib?.BrowserCodeReader?.listVideoInputDevices?.();
+          if (Array.isArray(videoInputDevices) && videoInputDevices.length > 0) {
+            const rearCamera = videoInputDevices.find((device) =>
+              /environment|back|rear/i.test(device.label || '')
+            );
+            if (rearCamera) {
+              selectedDeviceId = rearCamera.deviceId;
             }
           }
-        );
+        } catch (deviceErr) {
+          console.warn('Could not enumerate video input devices:', deviceErr);
+        }
+
+        if (!this.isScanning) {
+          this.stop();
+          return;
+        }
+
+        const scanCallback = (result, error, controls) => {
+          if (!this.isScanning) return;
+
+          if (result) {
+            const raw = result.getText();
+            const normalized = normalizeBarcode(raw);
+
+            // Stop scanner immediately on match
+            this.stop();
+
+            if (typeof this.onScan === 'function') {
+              this.onScan(normalized);
+            }
+          }
+        };
+
+        // Stream from device camera (rear/environment preferred on mobile)
+        if (selectedDeviceId || typeof this.reader.decodeFromConstraints !== 'function') {
+          this.controls = await this.reader.decodeFromVideoDevice(
+            selectedDeviceId,
+            this.videoElement,
+            scanCallback
+          );
+        } else {
+          this.controls = await this.reader.decodeFromConstraints(
+            { video: { facingMode: { ideal: 'environment' } } },
+            this.videoElement,
+            scanCallback
+          );
+        }
 
         if (!this.isScanning) {
           this.stop();
