@@ -13,7 +13,7 @@
 - [x] Remove unneeded template pages and replace branding across all views.
 
 ## Phase 2: Barcode Scanning & Item Lookup (Active Milestone)
-> *Goal: Enable live camera or manual UPC barcode scanning, query a static/mock catalog, and display item specifications without saving to storage.*
+> *Goal: Enable live camera or manual UPC barcode scanning, query online product catalogs, and display item specifications with local client-side persistence.*
 
 - [x] **Scan Interface & Viewfinder (`scan.html`)**
   - [x] Implement mobile-friendly camera viewfinder container with targeting overlay and scan guides.
