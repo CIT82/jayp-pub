@@ -419,7 +419,7 @@
                     Product / Item Name <span class="text-danger">*</span>
                   </label>
                   <input type="text" class="form-control-custom" id="item-name"
-                    placeholder="e.g. Ergonomic Wireless Bluetooth Mouse" value="Ergonomic Wireless Mouse">
+                    placeholder="e.g. Ergonomic Wireless Bluetooth Mouse">
                 </div>
 
                 <div class="col-12 col-md-6">
@@ -427,7 +427,7 @@
                     SKU / Item Code <span class="text-danger">*</span>
                   </label>
                   <input type="text" class="form-control-custom" id="item-sku"
-                    placeholder="e.g. ELEC-9021" value="ELEC-9021">
+                    placeholder="e.g. ELEC-9021">
                 </div>
 
                 <div class="col-12 col-md-6">
@@ -436,7 +436,7 @@
                   </label>
                   <div class="input-group">
                     <input type="text" class="form-control-custom" id="item-barcode"
-                      placeholder="e.g. 084920192831" value="084920192831">
+                      placeholder="e.g. 084920192831">
                     <a href="scan.html" class="btn btn-outline-secondary" type="button" title="Scan with camera">
                       <i class="bi bi-upc-scan"></i>
                     </a>
@@ -448,7 +448,7 @@
                     Description & Notes
                   </label>
                   <textarea class="form-control-custom" id="item-description" rows="3"
-                    placeholder="Optional item details, dimensions, compatibility, or storage requirements...">Rechargeable multi-device wireless optical mouse with USB-C dongle.</textarea>
+                    placeholder="Optional item details, dimensions, compatibility, or storage requirements..."></textarea>
                 </div>
               </div>
 
@@ -462,8 +462,8 @@
                     Category <span class="text-danger">*</span>
                   </label>
                   <select class="form-select form-control-custom" id="item-category">
-                    <option value="">Select a category...</option>
-                    <option value="electronics" selected>Electronics</option>
+                    <option value="" selected>Select a category...</option>
+                    <option value="electronics">Electronics</option>
                     <option value="food">Food &amp; Beverage</option>
                     <option value="packaging">Packaging &amp; Shipping</option>
                     <option value="office">Office Supplies</option>
@@ -476,8 +476,8 @@
                     Storage Location <span class="text-danger">*</span>
                   </label>
                   <select class="form-select form-control-custom" id="item-location">
-                    <option value="">Select location...</option>
-                    <option value="loc-1" selected>Downtown Retail Store (Store #1)</option>
+                    <option value="" selected>Select location...</option>
+                    <option value="loc-1">Downtown Retail Store (Store #1)</option>
                     <option value="loc-2">Westside Branch Store (Store #2)</option>
                     <option value="loc-3">Central Storage Annex (Storage)</option>
                   </select>
@@ -488,7 +488,7 @@
                     Specific Shelf / Bin / Rack
                   </label>
                   <input type="text" class="form-control-custom" id="item-sublocation"
-                    placeholder="e.g. Shelf B, Bin 3" value="Shelf B">
+                    placeholder="e.g. Shelf B, Bin 3">
                 </div>
 
                 <div class="col-12 col-md-6">
@@ -496,7 +496,7 @@
                     Vendor / Supplier
                   </label>
                   <input type="text" class="form-control-custom" id="item-vendor"
-                    placeholder="e.g. Logitech Direct Supplies" value="TechLogix Wholesale">
+                    placeholder="e.g. Logitech Direct Supplies">
                 </div>
               </div>
 
@@ -509,28 +509,28 @@
                   <label class="form-label-custom" for="item-qty">
                     Initial Qty <span class="text-danger">*</span>
                   </label>
-                  <input type="number" class="form-control-custom" id="item-qty" min="0" value="45">
+                  <input type="number" class="form-control-custom" id="item-qty" min="0" placeholder="0">
                 </div>
 
                 <div class="col-6 col-md-3">
                   <label class="form-label-custom" for="item-min">
                     Reorder Alert Qty <span class="text-danger">*</span>
                   </label>
-                  <input type="number" class="form-control-custom" id="item-min" min="0" value="10">
+                  <input type="number" class="form-control-custom" id="item-min" min="0" placeholder="0">
                 </div>
 
                 <div class="col-6 col-md-3">
                   <label class="form-label-custom" for="item-cost">
                     Unit Cost ($)
                   </label>
-                  <input type="number" class="form-control-custom" id="item-cost" min="0" step="0.01" value="18.50">
+                  <input type="number" class="form-control-custom" id="item-cost" min="0" step="0.01" placeholder="0.00">
                 </div>
 
                 <div class="col-6 col-md-3">
                   <label class="form-label-custom" for="item-price">
                     Selling Price ($)
                   </label>
-                  <input type="number" class="form-control-custom" id="item-price" min="0" step="0.01" value="34.99">
+                  <input type="number" class="form-control-custom" id="item-price" min="0" step="0.01" placeholder="0.00">
                 </div>
               </div>
 
@@ -707,6 +707,12 @@
       const qty = params.get('qty');
       const unit = params.get('unit');
 
+      const hasQueryParams = Boolean(window.location.search && window.location.search.slice(1).trim().length > 0);
+      const form = document.querySelector('form');
+      if (hasQueryParams && form) {
+        form.reset();
+      }
+
       if (barcode) {
         const el = document.getElementById('item-barcode');
         if (el) el.value = barcode;
@@ -726,7 +732,7 @@
       if (unit && unit !== 'units') {
         const descEl = document.getElementById('item-description');
         if (descEl && !descEl.value.includes(unit)) {
-          descEl.value = (descEl.value ? descEl.value + ' ' : '') + `Package Unit: ${unit}.`;
+          descEl.value = `Package Unit: ${unit}.`;
         }
       }
     });
